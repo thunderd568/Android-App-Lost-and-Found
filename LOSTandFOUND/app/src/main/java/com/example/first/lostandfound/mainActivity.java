@@ -83,6 +83,7 @@ public class mainActivity extends AppCompatActivity implements LoaderCallbacks<C
                 return false;
             }
         });
+        
 
         Button mEmailSignInButton = (Button) findViewById(R.id.Login_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
