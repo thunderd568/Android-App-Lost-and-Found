@@ -52,16 +52,21 @@ public class mainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        /* Check if a user is still logged in. This has to be commented out until the
-        / activity to go to users homepage is made.
-        if (mFirebaseAuth.getCurrentUser() != null) {
-            // TODO: start the activity to show home page of user instead.
-        }
-        */
 
 
         mEmailView = findViewById(R.id.email);
         mFirebaseAuth = FirebaseAuth.getInstance();
+
+
+        // If there is a current user, they'll be taken to their home page.
+        if (mFirebaseAuth.getCurrentUser() != null) {
+            Log.i(TAG, "Current user is still logged in");
+            Intent intent = new Intent(this, homeScreenActivity.class);
+
+            finish();
+            startActivity(intent);
+
+        }
 
         mPasswordView = findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -121,6 +126,7 @@ public class mainActivity extends AppCompatActivity {
 
                     // Upon successful login, Start the next activity to go to next screen
                     // TODO: make an intent to start the next activity to take user to next screen.
+                    // This may require us to pass in some extra information. I'm not sure yet.
                     Log.i(TAG, "Login was successful, terminating the login activity");
                     finish();
 
