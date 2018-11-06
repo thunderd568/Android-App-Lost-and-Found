@@ -86,7 +86,7 @@ public class LoginActivity extends Activity {
 
 
         // The logic for the 'Sign in' button.
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        Button mEmailSignInButton = (Button) findViewById(R.id.Login_button);
         mEmailSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,15 +95,15 @@ public class LoginActivity extends Activity {
         });
 
 
-        /* The logic for the 'Register' button.
-        Button mRegisterButton = findViewById(R.id.Si);
+        // The logic for the 'Register' button.
+        Button mRegisterButton = findViewById(R.id.SignUp_button);
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 registerUser();
             }
         });
-        */
+
     }
 
     protected void attemptLogin() {
@@ -151,6 +151,9 @@ public class LoginActivity extends Activity {
 
     protected void registerUser() {
         Log.i(TAG, "Starting Registration activty");
+
+        // TODO: When the activity created for registering a user is created, replace
+        // LoginActivity.class with that activity name instead.
         Intent intent = new Intent(this, LoginActivity.class);
 
         finish();
