@@ -28,6 +28,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+/*@author: Philip Gouldman, Fall 2018 CMSC436
+* created on: 11/5/2018
+* */
+
+
 public class LoginActivity extends Activity {
 
     private static final String TAG = "LoginActivity";
@@ -60,16 +65,15 @@ public class LoginActivity extends Activity {
 
 
         // If there is a current user, they'll be taken to their home page.
-        /*
         if (mFirebaseAuth.getCurrentUser() != null) {
             Log.i(TAG, "Current user is still logged in");
-            Intent intent = new Intent(this, homeScreenActivity.class);
+            Intent intent = new Intent(this, NavTabsActivity.class);
 
-            //finish();
+            // Finish this and since a user is logged in go to the users Home page.
+            finish();
             startActivity(intent);
 
         }
-        */
 
 
         mPasswordView = findViewById(R.id.password);
