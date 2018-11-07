@@ -83,7 +83,7 @@ public class CreateAccountActivity extends AppCompatActivity {
             return;
         }
         if(password.length() < 6 || username.length() < 4) {
-            Toast.makeText(this, "Password must be at least 6 characters long", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Password must be at least 6 characters", Toast.LENGTH_LONG).show();
             return;
         }
         if(!password.equals(confirm)){
@@ -109,7 +109,8 @@ public class CreateAccountActivity extends AppCompatActivity {
                     // TODO: make an intent to start the next activity to take user to next screen.
                     // This may require us to pass in some extra information. I'm not sure yet.
                     Log.i(TAG, "Account successfully created, terminating the login activity");
-                    finish();
+                    Intent intent = new Intent(CreateAccountActivity.this, NavTabsActivity.class);
+                    startActivity(intent);
 
 
                 } else {
