@@ -154,7 +154,7 @@ public class LoginActivity extends Activity {
 
         // TODO: When the activity created for registering a user is created, replace
         // LoginActivity.class with that activity name instead.
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, CreateAccountActivity.class);
 
         finish();
         startActivity(intent);

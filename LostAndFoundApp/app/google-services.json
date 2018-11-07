@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "423314993575-q5hfogl0a700ma3nc5gofofu9mb10k7u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cmsc436.final_project.lostandfoundapp",
+            "certificate_hash": "8cfcc18e1d86aaa7973d2665a6ff0ae2cfbbb8a0"
+          }
+        },
+        {
           "client_id": "423314993575-ehh9mae2sikdop66m7cnt8447idq00ku.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "423314993575-ehh9mae2sikdop66m7cnt8447idq00ku.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
