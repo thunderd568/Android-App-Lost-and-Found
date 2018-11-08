@@ -70,7 +70,7 @@ public class LoginActivity extends Activity {
             Intent intent = new Intent(this, NavTabsActivity.class);
 
             // Finish this and since a user is logged in go to the users Home page.
-            finish();
+
             startActivity(intent);
 
         }
@@ -113,6 +113,7 @@ public class LoginActivity extends Activity {
     protected void attemptLogin() {
 
         // Store values at the time of the login attempt.
+
         String email = mEmailView.getText().toString().trim();
         String password = mPasswordView.getText().toString().trim();
 

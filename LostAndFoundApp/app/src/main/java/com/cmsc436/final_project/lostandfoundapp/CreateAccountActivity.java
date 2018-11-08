@@ -78,26 +78,31 @@ public class CreateAccountActivity extends AppCompatActivity {
         final String password = mPasswordView.getText().toString().trim();
         String confirm = mconfirmPass.getText().toString().trim();
         final String username = mUserName.getText().toString().trim();
-        if(equals("") || password.equals("") || username.equals("")){
+        // check to make sure every field is filled in
+        if(email.equals("") || password.equals("") || username.equals("")){
             Toast.makeText(this, "Enter a valid email, username, or password", Toast.LENGTH_LONG).show();
             return;
         }
+        // password and username must be minimum length
         if(password.length() < 6 || username.length() < 4) {
             Toast.makeText(this, "Password must be at least 6 characters", Toast.LENGTH_LONG).show();
             return;
         }
+        // password and confirm password must match
         if(!password.equals(confirm)){
             Toast.makeText(this, "Make sure password fields match!", Toast.LENGTH_LONG).show();
             return;
 
 
         }
+        // create entity in firebase authentication
         mFirebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener( new OnCompleteListener<AuthResult>() {
 
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 // Verify if the account creation was successful.
                 if (task.isSuccessful()) {
+                    // create key in real time database
                     String id = database.push().getKey();
                     database.child(id).setValue(new Users(email, 0, username));
 
