@@ -20,6 +20,8 @@
     <string name="title_lost_tab">Lost</string>
     <string name="title_found_tab">Found</string>
 
+    <string name="LOSTFOUND">LOST "\u0026" FOUND</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

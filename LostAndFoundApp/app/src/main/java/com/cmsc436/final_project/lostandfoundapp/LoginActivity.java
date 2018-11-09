@@ -140,6 +140,10 @@ public class LoginActivity extends Activity {
                     Log.i(TAG, "Login was successful, terminating the login activity");
                     finish();
 
+                    // Start the navtabs activity, this is the users homescreen.
+                    Intent intent = new Intent(getApplicationContext(), NavTabsActivity.class);
+                    startActivity(intent);
+
 
                 } else {
 

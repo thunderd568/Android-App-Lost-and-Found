@@ -113,7 +113,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                     // Upon successful login, Start the next activity to go to next screen
                     // TODO: make an intent to start the next activity to take user to next screen.
                     // This may require us to pass in some extra information. I'm not sure yet.
-                    Log.i(TAG, "Account successfully created, terminating the login activity");
+                    Log.i(TAG, "Account successfully created");
                     Intent intent = new Intent(CreateAccountActivity.this, NavTabsActivity.class);
                     startActivity(intent);
 
