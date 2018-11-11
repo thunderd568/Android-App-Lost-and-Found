@@ -40,6 +40,7 @@ public class LoginActivity extends Activity {
     // The necessary instance variables to interact with the text fields and buttons.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
+    private TextView forgotpassword;
 
     private static final int REQUEST_READ_CONTACTS = 0;
 
@@ -105,6 +106,16 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View view) {
                 registerUser();
+            }
+        });
+
+
+        // The logic for the 'forgot password' textview.
+        forgotpassword = (TextView)findViewById(R.id.ForgotPW);
+        forgotpassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this,PasswordActivity.class));
             }
         });
 
