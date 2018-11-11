@@ -29,8 +29,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 /*@author: Philip Gouldman, Fall 2018 CMSC436
-* created on: 11/5/2018
-* */
+ * created on: 11/5/2018
+ * */
 
 
 public class LoginActivity extends Activity {
