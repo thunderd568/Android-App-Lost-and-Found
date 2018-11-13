@@ -71,7 +71,7 @@ public class LoginActivity extends Activity {
             Intent intent = new Intent(this, NavTabsActivity.class);
 
             // Finish this and since a user is logged in go to the users Home page.
-
+            finish();
             startActivity(intent);
 
         }
