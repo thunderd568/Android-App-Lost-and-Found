@@ -176,7 +176,7 @@ public class LoginActivity extends Activity {
         // LoginActivity.class with that activity name instead.
         Intent intent = new Intent(this, CreateAccountActivity.class);
 
-        finish();
+        //finish();
         startActivity(intent);
     }
 
