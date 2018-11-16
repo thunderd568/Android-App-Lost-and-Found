@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -36,7 +38,8 @@ public class FoundFragment extends Fragment {
         myFoundReports = new ArrayList<ItemReport>();
         myFoundReports.add(new ItemReport(
                 "Title0",
-                "Description",
+                "Description0",
+                "Author0",
                 new Date(),
                 new Date(),
                 new LatLng(0.0, 0.0),
@@ -46,6 +49,7 @@ public class FoundFragment extends Fragment {
         myFoundReports.add(new ItemReport(
                 "Title1",
                 "Description1",
+                "Author1",
                 new Date(),
                 new Date(),
                 new LatLng(0.01, -0.01),
@@ -55,6 +59,7 @@ public class FoundFragment extends Fragment {
         myFoundReports.add(new ItemReport(
                 "Title2",
                 "Description2",
+                "Author2",
                 new Date(),
                 new Date(),
                 new LatLng(0.02, -0.02),
@@ -64,6 +69,7 @@ public class FoundFragment extends Fragment {
         myFoundReports.add(new ItemReport(
                 "Title3",
                 "Description3",
+                "Author3",
                 new Date(),
                 new Date(),
                 new LatLng(0.03, -0.03),
@@ -73,6 +79,7 @@ public class FoundFragment extends Fragment {
         myFoundReports.add(new ItemReport(
                 "Title4",
                 "Description4",
+                "Author4",
                 new Date(),
                 new Date(),
                 new LatLng(0.04, -0.04),
@@ -82,6 +89,7 @@ public class FoundFragment extends Fragment {
         myFoundReports.add(new ItemReport(
                 "Title5",
                 "Description5",
+                "Author5",
                 new Date(),
                 new Date(),
                 new LatLng(0.05, -0.05),
@@ -91,6 +99,16 @@ public class FoundFragment extends Fragment {
 
         ReportAdapter mReportAdapter = new ReportAdapter(getContext(), myFoundReports);
         myReportsRecyclerView.setAdapter(mReportAdapter);
+
+/*  Test data, do not run again unless you wanna rape database everytime we create found fragment
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference("found_reports");
+        database.child(database.push().getKey()).setValue(myFoundReports.get(0));
+        database.child(database.push().getKey()).setValue(myFoundReports.get(1));
+        database.child(database.push().getKey()).setValue(myFoundReports.get(2));
+        database.child(database.push().getKey()).setValue(myFoundReports.get(3));
+        database.child(database.push().getKey()).setValue(myFoundReports.get(4));
+        database.child(database.push().getKey()).setValue(myFoundReports.get(5));
+*/
 
         // Inflate the layout for this fragment
         return fragView;

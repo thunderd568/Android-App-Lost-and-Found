@@ -22,6 +22,7 @@ public class ItemReport {
 
     private String mTitle;
     private String mDescription;
+    private String mAuthor;
     private Date mDateOccurred;
     private Date mDateAuthored;
     private LatLng mLatLng;
@@ -30,9 +31,10 @@ public class ItemReport {
     private ReportMethod mMethod;
     private ReportStatus mStatus;
 
-    public ItemReport(String mTitle, String mDescription, Date mDateOccurred, Date mDateAuthored, LatLng mLatLng, String mAddress, boolean isFound) {
+    public ItemReport(String mTitle, String mDescription, String mAuthor, Date mDateOccurred, Date mDateAuthored, LatLng mLatLng, String mAddress, boolean isFound) {
         this.mTitle = mTitle;
         this.mDescription = mDescription;
+        this.mAuthor = mAuthor;
         this.mDateOccurred = mDateOccurred;
         this.mDateAuthored = mDateAuthored;
         this.mLatLng = mLatLng;
@@ -56,6 +58,14 @@ public class ItemReport {
 
     public void setDescription(String mDescription) {
         this.mDescription = mDescription;
+    }
+
+    public String getAuthor() {
+        return mAuthor;
+    }
+
+    public void setAuthor(String mAuthor) {
+        this.mAuthor = mAuthor;
     }
 
     public Date getDateOccurred() {
