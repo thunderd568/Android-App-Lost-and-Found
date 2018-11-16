@@ -20,7 +20,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
     private List<ItemReport> reportList;
 
     //getting the context and product list with constructor
-    public ReportAdapter(Context mCtx, List<ItemReport> productList) {
+    public ReportAdapter(Context mCtx, List<ItemReport> reportList) {
         this.mCtx = mCtx;
         this.reportList = reportList;
     }

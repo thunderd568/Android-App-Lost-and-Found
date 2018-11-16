@@ -27,7 +27,9 @@ public class FoundFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        myReportsRecyclerView = (RecyclerView) container.findViewById(R.id.recyclerViewMyFoundReports);
+
+        View fragView = inflater.inflate(R.layout.fragment_found, container, false);
+        myReportsRecyclerView = (RecyclerView) fragView.findViewById(R.id.recyclerViewMyFoundReports);
         myReportsRecyclerView.setHasFixedSize(true);
         myReportsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext())); //TODO: not sure if this will work inside of constraint layout
 
@@ -73,7 +75,7 @@ public class FoundFragment extends Fragment {
         myReportsRecyclerView.setAdapter(mReportAdapter);
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_found, container, false);
+        return fragView;
     }
 
 }
