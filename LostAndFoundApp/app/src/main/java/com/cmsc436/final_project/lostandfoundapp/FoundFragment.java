@@ -70,6 +70,24 @@ public class FoundFragment extends Fragment {
                 "Address3",
                 true
         ));
+        myFoundReports.add(new ItemReport(
+                "Title4",
+                "Description4",
+                new Date(),
+                new Date(),
+                new LatLng(0.04, -0.04),
+                "Address4",
+                true
+        ));
+        myFoundReports.add(new ItemReport(
+                "Title5",
+                "Description5",
+                new Date(),
+                new Date(),
+                new LatLng(0.05, -0.05),
+                "Address5",
+                true
+        ));
 
         ReportAdapter mReportAdapter = new ReportAdapter(getContext(), myFoundReports);
         myReportsRecyclerView.setAdapter(mReportAdapter);
