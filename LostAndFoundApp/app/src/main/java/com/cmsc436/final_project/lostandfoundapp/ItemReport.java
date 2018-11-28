@@ -44,6 +44,11 @@ public class ItemReport {
         this.mStatus = ReportStatus.PENDING;
     }
 
+    // Default Constructor
+    public ItemReport() {
+
+    }
+
     public String getTitle() {
         return mTitle;
     }
