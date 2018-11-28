@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -17,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -27,7 +29,7 @@ public class LostFragment extends Fragment {
 
     protected RecyclerView myReportsRecyclerView;
     protected DatabaseReference databaseLostItems;
-    protected List<ItemReport> reports;
+    protected List<ItemReport> myLostReports;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,7 +42,7 @@ public class LostFragment extends Fragment {
         myReportsRecyclerView.setHasFixedSize(true);
         myReportsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        reports = new ArrayList<ItemReport>();
+        myLostReports = new ArrayList<ItemReport>();
 
         return fragView;
     }
@@ -53,14 +55,36 @@ public class LostFragment extends Fragment {
         databaseLostItems.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                reports.clear();
+                myLostReports.clear();
 
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    ItemReport report = postSnapshot.getValue(ItemReport.class);
-                    reports.add(report);
+                for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
+                    String address = snapshot.child("address").getValue().toString();
+                    String author = snapshot.child("author").getValue().toString();
+                    Date dateAuthored = snapshot.child("dateAuthored").getValue(Date.class);
+                    Date dateOccurred = snapshot.child("dateOccurred").getValue(Date.class);
+                    String description = snapshot.child("description").getValue().toString();
+                    Double lat = snapshot.child("latLng").child("latitude").getValue(Double.class);
+                    Double longitude = snapshot.child("latLng").child("longitude").getValue(Double.class);
+                    String method = snapshot.child("method").getValue().toString();
+                    String status = snapshot.child("status").getValue().toString();
+                    String title = snapshot.child("title").getValue().toString();
+                    String type = snapshot.child("type").getValue().toString();
+
+                    // Make a new latLng object. We can't deserialize the LatLng object inside our object
+                    // So the work around is to get the double values, make a new LatLng object
+                    // and pass it into the constructor. Note that since this is the found fragment
+                    // "true" will be passed in as the argument...duh!
+                    LatLng latLng = new LatLng(lat, longitude);
+
+
+                    ItemReport report = new ItemReport(title, description, author, dateOccurred,
+                            dateAuthored, latLng, address, false);
+
+                    myLostReports.add(report);
+
                 }
 
-                ReportAdapter mAdapter = new ReportAdapter(getContext(), reports);
+                ReportAdapter mAdapter = new ReportAdapter(getContext(), myLostReports);
                 myReportsRecyclerView.setAdapter(mAdapter);
             }
 
