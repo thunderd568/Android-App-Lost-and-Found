@@ -3,6 +3,7 @@ package com.cmsc436.final_project.lostandfoundapp;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,8 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,6 +29,7 @@ import java.util.Date;
 public class FoundFragment extends Fragment {
     ArrayList<ItemReport> myFoundReports;
     RecyclerView myReportsRecyclerView;
+    DatabaseReference databaseFoundItems;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,69 +41,9 @@ public class FoundFragment extends Fragment {
         myReportsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext())); //TODO: not sure if this will work inside of constraint layout
 
         myFoundReports = new ArrayList<ItemReport>();
-        myFoundReports.add(new ItemReport(
-                "Title0",
-                "Description0",
-                "Author0",
-                new Date(),
-                new Date(),
-                new LatLng(0.0, 0.0),
-                "Address0",
-                true
-        ));
-        myFoundReports.add(new ItemReport(
-                "Title1",
-                "Description1",
-                "Author1",
-                new Date(),
-                new Date(),
-                new LatLng(0.01, -0.01),
-                "Address1",
-                true
-        ));
-        myFoundReports.add(new ItemReport(
-                "Title2",
-                "Description2",
-                "Author2",
-                new Date(),
-                new Date(),
-                new LatLng(0.02, -0.02),
-                "Address2",
-                true
-        ));
-        myFoundReports.add(new ItemReport(
-                "Title3",
-                "Description3",
-                "Author3",
-                new Date(),
-                new Date(),
-                new LatLng(0.03, -0.03),
-                "Address3",
-                true
-        ));
-        myFoundReports.add(new ItemReport(
-                "Title4",
-                "Description4",
-                "Author4",
-                new Date(),
-                new Date(),
-                new LatLng(0.04, -0.04),
-                "Address4",
-                true
-        ));
-        myFoundReports.add(new ItemReport(
-                "Title5",
-                "Description5",
-                "Author5",
-                new Date(),
-                new Date(),
-                new LatLng(0.05, -0.05),
-                "Address5",
-                true
-        ));
 
-        ReportAdapter mReportAdapter = new ReportAdapter(getContext(), myFoundReports);
-        myReportsRecyclerView.setAdapter(mReportAdapter);
+        databaseFoundItems = FirebaseDatabase.getInstance().getReference("found_reports");
+
 
 /*  Test data, do not run again unless you wanna rape database everytime we create found fragment
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("found_reports");
@@ -112,6 +57,55 @@ public class FoundFragment extends Fragment {
 
         // Inflate the layout for this fragment
         return fragView;
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        databaseFoundItems.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                myFoundReports.clear();
+
+                for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
+
+                    String address = snapshot.child("address").getValue().toString();
+                    String author = snapshot.child("author").getValue().toString();
+                    Date dateAuthored = snapshot.child("dateAuthored").getValue(Date.class);
+                    Date dateOccurred = snapshot.child("dateOccurred").getValue(Date.class);
+                    String description = snapshot.child("description").getValue().toString();
+                    Double lat = snapshot.child("latLng").child("latitude").getValue(Double.class);
+                    Double longitude = snapshot.child("latLng").child("longitude").getValue(Double.class);
+                    String method = snapshot.child("method").getValue().toString();
+                    String status = snapshot.child("status").getValue().toString();
+                    String title = snapshot.child("title").getValue().toString();
+                    String type = snapshot.child("type").getValue().toString();
+
+                    // Make a new latLng object. We can't deserialize the LatLng object inside our object
+                    // So the work around is to get the double values, make a new LatLng object
+                    // and pass it into the constructor. Note that since this is the found fragment
+                    // "true" will be passed in as the argument...duh!
+                    LatLng latLng = new LatLng(lat, longitude);
+
+
+                    ItemReport report = new ItemReport(title, description, author, dateOccurred,
+                            dateAuthored, latLng, address, true);
+
+                    myFoundReports.add(report);
+                }
+
+                ReportAdapter mReportAdapter = new ReportAdapter(getContext(), myFoundReports);
+                myReportsRecyclerView.setAdapter(mReportAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        });
+
     }
 
 }
