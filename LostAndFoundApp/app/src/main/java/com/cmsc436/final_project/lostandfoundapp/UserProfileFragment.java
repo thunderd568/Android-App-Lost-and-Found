@@ -1,12 +1,16 @@
 package com.cmsc436.final_project.lostandfoundapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -17,6 +21,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 
 import java.util.ArrayList;
 
@@ -33,7 +38,7 @@ public class UserProfileFragment extends Fragment {
     String mEmail;
     TextView Username,Email;
     RatingBar ratingBar;
-
+    Button updateProfileButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,9 +54,18 @@ public class UserProfileFragment extends Fragment {
         FirebaseUser user = firebaseAuth.getCurrentUser();
         mEmail = user.getEmail();
 
-
+        updateProfileButton = (Button) fragview.findViewById(R.id.updateProfile);
+        updateProfileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.tab_fragment_container, new UpdateProfileFragment());
+                ft.commit();
+            }
+        });
         return fragview;
     }
+
 
     public void onStart(){
         super.onStart();
@@ -65,16 +79,16 @@ public class UserProfileFragment extends Fragment {
                     String email = snapshot.child("email").getValue().toString();
                     int rating = snapshot.child("rating").getValue(Integer.class);
 
-                   if(email.equals(mEmail)) {
-                      mUser = new Users(email, rating, username);
-                       Log.i(TAG, "onDataChange: " + mUser.username + " " +
-                               mUser.rating + " " + mUser.email);
+                    if(email.equals(mEmail)) {
+                        mUser = new Users(email, rating, username);
+                        Log.i(TAG, "onDataChange: " + mUser.username + " " +
+                                mUser.rating + " " + mUser.email);
 
                         Username.setText(mUser.username);
                         Email.setText(mUser.email);
                         ratingBar.setNumStars(mUser.rating);
 
-                   }
+                    }
                 }
             }
 
@@ -83,7 +97,6 @@ public class UserProfileFragment extends Fragment {
 
             }
         });
-
 
     }
 
