@@ -20,6 +20,18 @@
     <string name="title_lost_tab">Lost</string>
     <string name="title_found_tab">Found</string>
 
+    <string name="btUpdateProfile">Submit Change</string>
+    <string name="tvUpdateProfileName">User Name</string>
+    <string name="tvUpdateProfileEmail">User Email</string>
+    <string name="ChangePassword">Change Password</string>
+    <string name="ConfirmPassword">Confirm Password</string>
+
+
+
+    <string name="tbProfileName">User Name</string>
+    <string name="tvProfileEmail">User Email</string>
+    <string name="updateProfile">Update Profile</string>
+
     <string name="LOSTFOUND">LOST "\u0026" FOUND</string>
 
     <!-- TODO: Remove or change this placeholder text -->
