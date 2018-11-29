@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lost and Found</string>
+    <string name="app_name">Lost"\u0026"Found</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -11,8 +11,8 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
+    <string name="permission_rationale">
+        "Contacts permissions are needed for providing email completions."
     </string>
     <string name="create_account">Create Account</string>
     <string name="title_activity_nav_tabs">NavTabsActivity</string>
@@ -25,8 +25,6 @@
     <string name="tvUpdateProfileEmail">User Email</string>
     <string name="ChangePassword">Change Password</string>
     <string name="ConfirmPassword">Confirm Password</string>
-
-
 
     <string name="tbProfileName">User Name</string>
     <string name="tvProfileEmail">User Email</string>
