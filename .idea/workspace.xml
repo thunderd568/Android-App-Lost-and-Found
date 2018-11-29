@@ -6,9 +6,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e57a215-2be4-4e04-8482-03acb1aa4e93" name="Default" comment="Profile changes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="7e57a215-2be4-4e04-8482-03acb1aa4e93" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,20 +22,19 @@
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="54" />
-    <option name="y" value="-8" />
     <option name="width" value="2514" />
     <option name="height" value="1456" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
+      <pane id="ProjectPane" />
       <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="ProjectPane" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -143,7 +140,14 @@
       <option name="project" value="LOCAL" />
       <updated>1543465838793</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Profile changes">
+      <created>1543466765327</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1543466765327</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -153,13 +157,13 @@
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5020194" side_tool="true" visible="true" weight="0.32930514" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5024233" side_tool="true" visible="true" weight="0.32930514" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="7" sideWeight="0.49798062" visible="true" weight="0.32930514" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49757674" visible="true" weight="0.32930514" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32987553" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24919225" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24919225" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
@@ -207,7 +211,8 @@
     <MESSAGE value="dependencies change" />
     <MESSAGE value="dependencies changes" />
     <MESSAGE value="getting pulls" />
-    <option name="LAST_COMMIT_MESSAGE" value="getting pulls" />
+    <MESSAGE value="Profile changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Profile changes" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/README.md">

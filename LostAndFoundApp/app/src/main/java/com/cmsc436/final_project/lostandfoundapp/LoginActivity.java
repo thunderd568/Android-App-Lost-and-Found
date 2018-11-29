@@ -64,7 +64,6 @@ public class LoginActivity extends Activity {
         mEmailView = findViewById(R.id.email);
         mFirebaseAuth = FirebaseAuth.getInstance();
 
-
         // If there is a current user, they'll be taken to their home page.
         if (mFirebaseAuth.getCurrentUser() != null) {
             Log.i(TAG, "Current user is still logged in");
@@ -75,7 +74,6 @@ public class LoginActivity extends Activity {
             startActivity(intent);
 
         }
-
 
         mPasswordView = findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -155,15 +153,12 @@ public class LoginActivity extends Activity {
                     Intent intent = new Intent(getApplicationContext(), NavTabsActivity.class);
                     startActivity(intent);
 
-
                 } else {
-
                     // Login failed. Alert with a toast and clear the fields.
                     Toast.makeText(LoginActivity.this, "Login failed. Invalid email or password.", Toast.LENGTH_LONG).show();
 
                     mEmailView.getText().clear();
                     mPasswordView.getText().clear();
-
                 }
             }
         });
