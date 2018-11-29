@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,6 +41,9 @@ public class FoundFragment extends Fragment {
     Query myAuthorQuery;
     Query myReportsQuery;
 
+    //Buttons
+    Button newFoundReportButton;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -56,16 +61,19 @@ public class FoundFragment extends Fragment {
         databaseFoundItems = FirebaseDatabase.getInstance().getReference("found_reports");
         databaseUsers = FirebaseDatabase.getInstance().getReference("users");
 
+        // Get the button to start the Create a new Found Item Report
+        newFoundReportButton = fragView.findViewById(R.id.buttonAddFound);
 
-/*  Test data, do not run again unless you wanna rape database everytime we create found fragment
-        DatabaseReference database = FirebaseDatabase.getInstance().getReference("found_reports");
-        database.child(database.push().getKey()).setValue(myFoundReports.get(0));
-        database.child(database.push().getKey()).setValue(myFoundReports.get(1));
-        database.child(database.push().getKey()).setValue(myFoundReports.get(2));
-        database.child(database.push().getKey()).setValue(myFoundReports.get(3));
-        database.child(database.push().getKey()).setValue(myFoundReports.get(4));
-        database.child(database.push().getKey()).setValue(myFoundReports.get(5));
-*/
+        newFoundReportButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO: Implement the logic for the button that makes a new Found Item Report
+                // This will involve simply packaging an intent to start the appropriate activity.
+                Toast.makeText(getContext(), "Hey you hit the button!", Toast.LENGTH_LONG).show();
+            }
+        });
+
+
 
         // Inflate the layout for this fragment
         return fragView;
