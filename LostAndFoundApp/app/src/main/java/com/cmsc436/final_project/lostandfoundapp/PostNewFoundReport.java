@@ -30,14 +30,16 @@ public class PostNewFoundReport extends AppCompatActivity {
     protected EditText mTitleTextField; // The text field for the title of the post.
     protected EditText mDescriptionTextField;   // The text field for a description.
     protected EditText mAddressTextField;
-    protected FirebaseAuth mFirebaseAuth;
     protected Query mUserNameQuery;
     protected DatabaseReference mDatabaseReference;
     protected String currentUserName;
     private static final int MAP_ACTIVITY_RESULT_CODE = 0;
     private Double curr_Lat, curr_Lng;
     private String curr_address;
+    private String currentUser;
 
+    // Firebase tools
+    protected FirebaseAuth mFirebaseAuth;
     // Buttons
     protected Button mGetLocationButton;
 
@@ -54,15 +56,13 @@ public class PostNewFoundReport extends AppCompatActivity {
          * this might involve more querying...Hope this skeleton helps.
          *
          */
-
-
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        String email = mFirebaseAuth.getCurrentUser().getEmail();
-
         // Get reference to the 'users' tree in the Firebase Database
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("users");
-
         mGetLocationButton = findViewById(R.id.getFoundLocationButton);
+
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        Toast.makeText(getApplicationContext(), "Username is: " + mFirebaseAuth.getCurrentUser().getDisplayName(),
+                Toast.LENGTH_LONG).show();
 
         mGetLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,6 +73,7 @@ public class PostNewFoundReport extends AppCompatActivity {
                 startActivityForResult(intent,MAP_ACTIVITY_RESULT_CODE);
             }
         });
+
 
 
     }
@@ -91,6 +92,13 @@ public class PostNewFoundReport extends AppCompatActivity {
         if(MAP_ACTIVITY_RESULT_CODE == requestCode && RESULT_OK == requestCode){
 
         }
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
 
     }
 
