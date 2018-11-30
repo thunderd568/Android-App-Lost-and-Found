@@ -10,6 +10,5 @@ public class Users {
         this.email = email;
         this.rating = rating;
         this.username = username;
-
     }
 }
