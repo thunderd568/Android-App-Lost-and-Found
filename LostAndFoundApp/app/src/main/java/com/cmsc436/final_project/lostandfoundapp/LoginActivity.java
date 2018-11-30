@@ -141,7 +141,7 @@ public class LoginActivity extends Activity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 // Verify if the login was successful.
                 if (task.isSuccessful()) {
-                    Toast.makeText(LoginActivity.this, "Login successfully", Toast.LENGTH_LONG).show();
+                   // Toast.makeText(LoginActivity.this, "Login successfully", Toast.LENGTH_LONG).show();
 
                     // Upon successful login, Start the next activity to go to next screen
                     // TODO: make an intent to start the next activity to take user to next screen.
