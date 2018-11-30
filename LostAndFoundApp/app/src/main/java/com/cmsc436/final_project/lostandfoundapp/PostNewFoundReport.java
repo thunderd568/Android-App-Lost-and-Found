@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class PostNewFoundReport extends AppCompatActivity {
 
-    private final static String TAG = "Post New Found Report Activity";
+    private final static String TAG = "Post New Found";
 
     protected EditText mTitleTextField; // The text field for the title of the post.
     protected EditText mDescriptionTextField;   // The text field for a description.
@@ -33,6 +34,9 @@ public class PostNewFoundReport extends AppCompatActivity {
     protected Query mUserNameQuery;
     protected DatabaseReference mDatabaseReference;
     protected String currentUserName;
+    private static final int MAP_ACTIVITY_RESULT_CODE = 0;
+    private Double curr_Lat, curr_Lng;
+    private String curr_address;
 
     // Buttons
     protected Button mGetLocationButton;
@@ -63,7 +67,10 @@ public class PostNewFoundReport extends AppCompatActivity {
         mGetLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.i(TAG, "onClick: inside of the button");
                 // TODO: Start jasons stupid map activity.
+                Intent intent = new Intent(PostNewFoundReport.this, MapActivity.class);
+                startActivityForResult(intent,MAP_ACTIVITY_RESULT_CODE);
             }
         });
 
@@ -72,7 +79,13 @@ public class PostNewFoundReport extends AppCompatActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // TODO: Fill this in jason!
+        Log.i(TAG, "onActivityResult: Enter");
+
+
+        if(MAP_ACTIVITY_RESULT_CODE == requestCode && RESULT_OK == requestCode){
+
+        }
+
     }
 
 
