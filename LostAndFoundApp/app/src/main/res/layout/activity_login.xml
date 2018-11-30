@@ -59,7 +59,9 @@
                     android:hint="@string/prompt_email"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:drawableStart="@drawable/user"
+                    android:drawablePadding="8dp"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -77,7 +79,9 @@
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
                     android:maxLines="1"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:drawableStart="@drawable/locked"
+                    android:drawablePadding="8dp"/>
 
             </android.support.design.widget.TextInputLayout>
 
