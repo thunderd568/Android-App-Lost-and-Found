@@ -2,6 +2,7 @@ package com.cmsc436.final_project.lostandfoundapp;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -70,8 +71,11 @@ public class FoundFragment extends Fragment {
                 // TODO: Implement the logic for the button that makes a new Found Item Report
                 // This will involve simply packaging an intent to start the appropriate activity.
                 Toast.makeText(getContext(), "Hey you hit the button!", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getContext(), PostNewFoundReport.class);
+                startActivity(intent);
             }
         });
+
 
 
 
