@@ -29,6 +29,8 @@
     <string name="ChangePassword">Change Password</string>
     <string name="ConfirmPassword">Confirm Password</string>
 
+    <string name="WelcomeBack">Welcome Back</string>
+
     <string name="tbProfileName">User Name</string>
     <string name="tvProfileEmail">User Email</string>
     <string name="updateProfile">Update Profile</string>
