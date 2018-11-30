@@ -69,6 +69,7 @@ public class PostNewFoundReport extends AppCompatActivity {
             public void onClick(View view) {
                 Log.i(TAG, "onClick: inside of the button");
                 // TODO: Start jasons stupid map activity.
+                // TODO: Damn Phil, ok.  --JR
                 Intent intent = new Intent(PostNewFoundReport.this, MapActivity.class);
                 startActivityForResult(intent,MAP_ACTIVITY_RESULT_CODE);
             }
@@ -89,6 +90,9 @@ public class PostNewFoundReport extends AppCompatActivity {
 
 
         if(MAP_ACTIVITY_RESULT_CODE == requestCode && RESULT_OK == requestCode){
+            ItemReport foundReport = new ItemReport();
+
+
 
         }
 
