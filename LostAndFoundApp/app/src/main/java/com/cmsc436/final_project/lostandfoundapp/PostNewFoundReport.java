@@ -40,7 +40,7 @@ public class PostNewFoundReport extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_post_new_found_report);
+        setContentView(R.layout.activity_post_new_found);
         // TODO: Implement the logic to get the necessary information from the
         // EditText elements and push a new foundReport into the Firebase.
         // This requires us to have an xml that has the necessary id's. So Whoever
@@ -58,7 +58,7 @@ public class PostNewFoundReport extends AppCompatActivity {
         // Get reference to the 'users' tree in the Firebase Database
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("users");
 
-        mGetLocationButton = findViewById(R.id.getLocationButton);
+        mGetLocationButton = findViewById(R.id.getFoundLocationButton);
 
         mGetLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
