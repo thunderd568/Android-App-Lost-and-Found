@@ -92,8 +92,6 @@ public class CreateAccountActivity extends AppCompatActivity {
         if(!password.equals(confirm)){
             Toast.makeText(this, "Make sure password fields match!", Toast.LENGTH_LONG).show();
             return;
-
-
         }
         // create entity in firebase authentication
         mFirebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener( new OnCompleteListener<AuthResult>() {
