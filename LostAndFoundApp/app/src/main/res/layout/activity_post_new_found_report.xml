@@ -20,7 +20,9 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_post_new_found_report" />
+    <include
+        android:id="@+id/getLocationButton"
+        layout="@layout/content_post_new_found_report" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
