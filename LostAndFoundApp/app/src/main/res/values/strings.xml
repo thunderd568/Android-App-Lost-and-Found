@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Lost"\u0026"Found</string>
 
+    <!--API kay Don't Change!!!-->
+    <string name="google_maps_API_key">AIzaSyBc_t0LxRpEZFDmCnhA1PWB1wQFqt3_N64</string>
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -34,6 +37,10 @@
     <string name = "cancel">Cancel</string>
 
     <string name="LOSTFOUND">LOST "\u0026" FOUND</string>
+
+
+    <string name="map_hint">Enter Address, City or Zip Code</string>
+    <string name="get_location">Get Location</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

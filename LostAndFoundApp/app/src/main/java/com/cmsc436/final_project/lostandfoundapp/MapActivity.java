@@ -19,6 +19,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -93,16 +94,17 @@ public class MapActivity extends AppCompatActivity implements
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
     private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
+    private Location currentLocation;
+    private Double curr_Lat, curr_Lng;
+    private String curr_address;
     //default_zoom is set to 15f
     private static final float DEFAULT_ZOOM = 15f;
     private static final LatLngBounds LAT_LNG_BOUNDS = new LatLngBounds(
             new LatLng(-40, -168), new LatLng(71, 136));
 
-
     //widgets
     private AutoCompleteTextView mSearchText;
     private ImageView mGps;
-
 
     //vars
     private Boolean mLocationPermissionsGranted = false;
@@ -112,6 +114,7 @@ public class MapActivity extends AppCompatActivity implements
     private GoogleApiClient mGoogleApiClient;
     private PlaceInfo mPlace;
     private Marker mMarker;
+    private Button getLocation;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -120,6 +123,25 @@ public class MapActivity extends AppCompatActivity implements
         //initial search text and gps
         mSearchText = (AutoCompleteTextView) findViewById(R.id.input_search);
         mGps = (ImageView) findViewById(R.id.ic_gps);
+
+        curr_Lat = 0.0;
+        curr_Lng = 0.0;
+        curr_address ="";
+        getLocation = findViewById(R.id.back_button);
+
+        getLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.putExtra("curr_lat", curr_Lat);
+                intent.putExtra("curr_lng",curr_Lng);
+                intent.putExtra("curr_address",curr_address);
+
+                setResult(RESULT_OK,intent);
+                finish();
+            }
+        });
+
         getLocationPermission();
     }
 
@@ -180,7 +202,6 @@ public class MapActivity extends AppCompatActivity implements
                 moveCamera(latLng,DEFAULT_ZOOM,"Pin Location");
             }
         });
-        hideSoftKeyboard();
     }
 
     // search location part.
@@ -220,7 +241,7 @@ public class MapActivity extends AppCompatActivity implements
                     public void onComplete(@NonNull Task task) {
                         if(task.isSuccessful()){
                             Log.d(TAG, "onComplete: found location!");
-                            Location currentLocation = (Location) task.getResult();
+                            currentLocation = (Location) task.getResult();
                             moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()),
                                     DEFAULT_ZOOM,
                                     "My Location");
@@ -243,8 +264,14 @@ public class MapActivity extends AppCompatActivity implements
     private void moveCamera(LatLng latLng, float zoom, PlaceInfo placeInfo){
         Log.d(TAG, "moveCamera: moving the camera to: lat: " + latLng.latitude + ", lng: " + latLng.longitude );
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
+
+        curr_Lng = latLng.longitude;
+        curr_Lat = latLng.latitude;
+        curr_address = placeInfo.getAddress();
+        Log.i(TAG, "moveCamera: curr_lng: "+ curr_Lng + " curr_lat: " + curr_Lat + " curr_address: "+ curr_address);
+
+
         mMap.clear();
-        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(MapActivity.this));
         if(placeInfo != null){
             try{
                 String snippet = "Address: " + placeInfo.getAddress() + "\n";
@@ -261,8 +288,6 @@ public class MapActivity extends AppCompatActivity implements
         }else{
             mMap.addMarker(new MarkerOptions().position(latLng));
         }
-
-        hideSoftKeyboard();
     }
 
     // Second override function for move camera
@@ -271,6 +296,13 @@ public class MapActivity extends AppCompatActivity implements
     private void moveCamera(LatLng latLng, float zoom, String title){
         Log.d(TAG, "moveCamera: moving the camera to: lat: " + latLng.latitude + ", lng: " + latLng.longitude );
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
+        mMap.clear();
+
+        curr_Lat = latLng.latitude;
+        curr_Lng = latLng.longitude;
+        curr_address = " ";
+
+        Log.i(TAG, "moveCamera: curr_lng: "+ curr_Lng + " curr_lat: " + curr_Lat + " curr_address: "+ curr_address);
 
         MarkerOptions options = new MarkerOptions()
                 .position(latLng)
@@ -278,8 +310,6 @@ public class MapActivity extends AppCompatActivity implements
         ;
         mMap.addMarker(options);
 
-
-        hideSoftKeyboard();
     }
 
     // put the map on the button of the fragment, I think it will be easy to adapt when we want
@@ -339,16 +369,11 @@ public class MapActivity extends AppCompatActivity implements
         }
     }
 
-    // hide keyboard when click on the map.
-    // somehow it does work, trying to fix it right now.
-    private void hideSoftKeyboard(){
-        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-    }
+
 
     private AdapterView.OnItemClickListener mAutocompleteClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-            hideSoftKeyboard();
 
             final AutocompletePrediction item = mPlaceAutocompleteAdapter.getItem(i);
             final String placeId = item.getPlaceId();
@@ -396,4 +421,10 @@ public class MapActivity extends AppCompatActivity implements
             places.release();
         }
     };
+
+
+
+
+
+
 }
