@@ -21,19 +21,19 @@
             android:text="@string/btUpdateProfile"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.485"
+            app:layout_constraintHorizontal_bias="0.721"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.868" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/useremail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text="@string/tbProfileName"
+            android:text="@string/tvUpdateProfileEmail"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +43,7 @@
             app:layout_constraintVertical_bias="0.414" />
 
         <EditText
-            android:id="@+id/tvProfileUpdateEmail"
+            android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -51,7 +51,7 @@
             android:layout_marginBottom="8dp"
             android:autofillHints=""
             android:ems="10"
-            android:hint="@string/tvUpdateProfileEmail"
+            android:hint="@string/tvUpdateProfileName"
             android:inputType="textEmailAddress"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -60,20 +60,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.498"
             tools:targetApi="o" />
-
-        <RatingBar
-            android:id="@+id/ratingBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:isIndicator="true"
-            android:numStars="5"
-            android:rating="2.0"
-            android:stepSize="1.0"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.876" />
 
         <ImageView
             android:id="@+id/updateProfileImageView"
@@ -101,8 +87,8 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:ems="10"
             android:autofillHints=""
+            android:ems="10"
             android:hint="@string/ChangePassword"
             android:inputType="textPassword"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -111,7 +97,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.63"
-            tools:targetApi="o"/>
+            tools:targetApi="o" />
 
         <EditText
             android:id="@+id/confirmPasswordChanged"
@@ -120,8 +106,8 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:ems="10"
             android:autofillHints=""
+            android:ems="10"
             android:hint="@string/ConfirmPassword"
             android:inputType="textPassword"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -130,7 +116,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.732"
-            tools:targetApi="o"/>
+            tools:targetApi="o" />
+
+        <Button
+            android:id="@+id/cancle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancle"
+            tools:layout_editor_absoluteX="78dp"
+            tools:layout_editor_absoluteY="396dp" />
+
+
     </android.support.constraint.ConstraintLayout>
 
 

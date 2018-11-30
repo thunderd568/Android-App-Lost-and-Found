@@ -76,7 +76,6 @@ public class LostFragment extends Fragment {
                     // "true" will be passed in as the argument...duh!
                     LatLng latLng = new LatLng(lat, longitude);
 
-
                     ItemReport report = new ItemReport(title, description, author, dateOccurred,
                             dateAuthored, latLng, address, false);
 

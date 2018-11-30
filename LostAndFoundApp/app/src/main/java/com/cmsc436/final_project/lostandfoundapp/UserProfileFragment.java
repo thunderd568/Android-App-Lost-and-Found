@@ -39,6 +39,8 @@ public class UserProfileFragment extends Fragment {
     TextView Username,Email;
     RatingBar ratingBar;
     Button updateProfileButton;
+    FirebaseUser user;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,7 +53,7 @@ public class UserProfileFragment extends Fragment {
         Username = fragview.findViewById(R.id.username);
         Email = fragview.findViewById(R.id.email);
         ratingBar = fragview.findViewById(R.id.ratingBar);
-        FirebaseUser user = firebaseAuth.getCurrentUser();
+        user = firebaseAuth.getCurrentUser();
         mEmail = user.getEmail();
 
         updateProfileButton = (Button) fragview.findViewById(R.id.updateProfile);
@@ -87,7 +89,6 @@ public class UserProfileFragment extends Fragment {
                         Username.setText(mUser.username);
                         Email.setText(mUser.email);
                         ratingBar.setNumStars(mUser.rating);
-
                     }
                 }
             }
