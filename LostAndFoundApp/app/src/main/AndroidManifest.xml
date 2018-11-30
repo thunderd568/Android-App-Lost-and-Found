@@ -3,6 +3,8 @@
     package="com.cmsc436.final_project.lostandfoundapp">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -36,7 +38,8 @@
         <activity
             android:name=".PostNewLostReportActivity"
             android:label="@string/title_activity_post_new_lost_report"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MapActivity"></activity>
     </application>
 
 </manifest>
