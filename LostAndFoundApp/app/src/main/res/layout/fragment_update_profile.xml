@@ -11,6 +11,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <EditText
+            android:id="@+id/oldPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:autofillHints=""
+            android:drawableStart="@drawable/locked"
+            android:drawablePadding="8dp"
+            android:ems="10"
+            android:hint="@string/CurrentPassword"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.477"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.523"
+            tools:targetApi="o" />
         <Button
             android:id="@+id/btProfileUpdateSubmit"
             android:layout_width="wrap_content"
@@ -22,10 +43,10 @@
             android:text="@string/btUpdateProfile"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.248"
+            app:layout_constraintHorizontal_bias="0.197"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.787" />
+            app:layout_constraintVertical_bias="0.894" />
 
         <TextView
             android:id="@+id/updateuseremail"
@@ -81,10 +102,10 @@
             android:inputType="textPassword"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.478"
+            app:layout_constraintHorizontal_bias="0.477"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.55"
+            app:layout_constraintVertical_bias="0.641"
             tools:targetApi="o" />
 
         <EditText
@@ -99,12 +120,14 @@
             android:ems="10"
             android:hint="@string/ConfirmPassword"
             android:inputType="textPassword"
+            android:drawableStart="@drawable/locked"
+            android:drawablePadding="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.478"
+            app:layout_constraintHorizontal_bias="0.477"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.651"
+            app:layout_constraintVertical_bias="0.742"
             tools:targetApi="o" />
 
         <Button
@@ -116,10 +139,10 @@
             android:text="@string/cancel"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.756"
+            app:layout_constraintHorizontal_bias="0.741"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.777" />
+            app:layout_constraintVertical_bias="0.881" />
 
 
     </android.support.constraint.ConstraintLayout>

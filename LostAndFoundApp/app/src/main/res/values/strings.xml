@@ -26,8 +26,11 @@
     <string name="btUpdateProfile">Submit Change</string>
     <string name="tvUpdateProfileName">User Name</string>
     <string name="tvUpdateProfileEmail">User Email</string>
-    <string name="ChangePassword">Change Password</string>
+    <string name="ChangePassword">New Password</string>
     <string name="ConfirmPassword">Confirm Password</string>
+    <string name="CurrentPassword">Current Password</string>
+
+
 
     <string name="WelcomeBack">Welcome Back</string>
 
