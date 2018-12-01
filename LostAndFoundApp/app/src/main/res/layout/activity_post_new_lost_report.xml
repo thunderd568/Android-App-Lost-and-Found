@@ -15,8 +15,10 @@
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
         app:layout_constraintBottom_toBottomOf="@+id/postLostDateHeader"
         app:layout_constraintEnd_toStartOf="@+id/pickDateLostButton"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/getLostLocationButton"
-        app:layout_constraintTop_toTopOf="@+id/postLostDateHeader" />
+        app:layout_constraintTop_toTopOf="@+id/postLostDateHeader"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/getLostLocationButton"
