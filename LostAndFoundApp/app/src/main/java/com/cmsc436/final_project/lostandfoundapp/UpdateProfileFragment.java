@@ -40,7 +40,7 @@ public class UpdateProfileFragment extends Fragment {
         View fragview = inflater.inflate(R.layout.fragment_update_profile, container, false);
 
         databaseUsers = FirebaseDatabase.getInstance().getReference("users");
-        firebaseAuth = FirebaseAuth.getInstance().getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
         mEmail = user.getEmail();
         email = fragview.findViewById(R.id.updateuseremail);
