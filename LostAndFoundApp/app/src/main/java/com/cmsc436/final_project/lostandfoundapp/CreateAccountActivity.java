@@ -27,6 +27,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -103,23 +104,23 @@ public class CreateAccountActivity extends AppCompatActivity {
                     // create key in real time database
                     String id = database.push().getKey();
                     database.child(id).setValue(new Users(email, 0, username));
-
+                    FirebaseUser newUser = mFirebaseAuth.getCurrentUser();
+                    // This fragment of code will set the display name of the logged in user so it is
+                    // easily retrievable using the method for a firebase user, getDisplayName().
+                    if (newUser != null) {
+                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                .setDisplayName(username).build();
+                        newUser.updateProfile(profileUpdates);
+                    }
                     Toast.makeText(CreateAccountActivity.this, "Account Created", Toast.LENGTH_LONG).show();
-
-
-
                     // Upon successful login, Start the next activity to go to next screen
                     // TODO: make an intent to start the next activity to take user to next screen.
                     // This may require us to pass in some extra information. I'm not sure yet.
                     Log.i(TAG, "Account successfully created");
                     Intent intent = new Intent(CreateAccountActivity.this, NavTabsActivity.class);
                     startActivity(intent);
-
-
                 } else {
                     Toast.makeText(CreateAccountActivity.this, "Account already exists, try again", Toast.LENGTH_LONG).show();
-
-
                 }
             }
         });
