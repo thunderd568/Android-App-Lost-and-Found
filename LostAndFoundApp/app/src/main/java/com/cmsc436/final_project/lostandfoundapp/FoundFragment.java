@@ -64,6 +64,10 @@ public class FoundFragment extends Fragment {
 
         // Get the button to start the Create a new Found Item Report
         newFoundReportButton = fragView.findViewById(R.id.buttonAddFound);
+        mFirebaseAuth = FirebaseAuth.getInstance();
+
+        String displayName = mFirebaseAuth.getCurrentUser().getDisplayName();
+        Toast.makeText(getContext(), "Display Name of user is: " + displayName, Toast.LENGTH_LONG).show();
 
         newFoundReportButton.setOnClickListener(new View.OnClickListener() {
             @Override

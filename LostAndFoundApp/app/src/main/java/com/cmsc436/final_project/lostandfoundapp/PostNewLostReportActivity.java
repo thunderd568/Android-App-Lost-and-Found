@@ -21,7 +21,6 @@ public class PostNewLostReportActivity extends AppCompatActivity {
     protected EditText mDescriptionTextField;   // The text field for a description.
     protected EditText mAddressTextField;
     protected FirebaseAuth mFirebaseAuth;
-    protected Query mUserNameQuery;
     protected DatabaseReference mDatabaseReference;
     protected String currentUserName;
 
@@ -42,7 +41,7 @@ public class PostNewLostReportActivity extends AppCompatActivity {
 
 
         mFirebaseAuth = FirebaseAuth.getInstance();
-        String email = mFirebaseAuth.getCurrentUser().getEmail();
+        currentUserName = mFirebaseAuth.getCurrentUser().getDisplayName();  // Get the username of the logged in user.
 
         // Get reference to the 'users' tree in the Firebase Database
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("users");
