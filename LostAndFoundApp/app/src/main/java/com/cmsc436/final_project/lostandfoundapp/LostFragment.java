@@ -1,14 +1,17 @@
 package com.cmsc436.final_project.lostandfoundapp;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.database.DataSnapshot;
@@ -27,9 +30,12 @@ import java.util.List;
  */
 public class LostFragment extends Fragment {
 
+    private static final String TAG = "LostFragment";
+
     protected RecyclerView myReportsRecyclerView;
     protected DatabaseReference databaseLostItems;
     protected List<ItemReport> myLostReports;
+    protected Button submitLostReportButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,6 +49,16 @@ public class LostFragment extends Fragment {
         myReportsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         myLostReports = new ArrayList<ItemReport>();
+        submitLostReportButton = fragView.findViewById(R.id.buttonAddLost);
+
+        submitLostReportButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "Add lost report button was clicked. Entering PostNewLostReport Activity");
+                Intent intent = new Intent(getContext(), PostNewLostReportActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return fragView;
     }

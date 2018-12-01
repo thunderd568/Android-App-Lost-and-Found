@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,6 +24,11 @@ public class PostNewLostReportActivity extends AppCompatActivity {
     protected FirebaseAuth mFirebaseAuth;
     protected DatabaseReference mDatabaseReference;
     protected String currentUserName;
+
+    // Buttons
+    protected Button submitLostReportButton;
+    protected Button cancelLostReportButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +50,28 @@ public class PostNewLostReportActivity extends AppCompatActivity {
         currentUserName = mFirebaseAuth.getCurrentUser().getDisplayName();  // Get the username of the logged in user.
 
         // Get reference to the 'users' tree in the Firebase Database
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference("users");
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference("lost_reports");
+
+        // Getting the Views for the buttons on the page
+        submitLostReportButton = findViewById(R.id.submitLostReport);
+        cancelLostReportButton = findViewById(R.id.cancelLostReportButton);
+
+
+        submitLostReportButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO: Diarre, implement the same stuff we did for the found report
+                // only use the reference for the "lost_reports" child.
+            }
+        });
+
+        cancelLostReportButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // If they cancel then just end the activity and go back to the lost fragment
+                finish();
+            }
+        });
 
     }
 
