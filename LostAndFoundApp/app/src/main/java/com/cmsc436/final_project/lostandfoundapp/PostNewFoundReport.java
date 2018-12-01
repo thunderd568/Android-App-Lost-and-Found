@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.DatePicker;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -40,7 +41,7 @@ public class PostNewFoundReport extends AppCompatActivity {
 
     protected EditText mTitleTextField; // The text field for the title of the post.
     protected EditText mDescriptionTextField;   // The text field for a description.
-    protected EditText mAddressTextField;
+    protected TextView mAddressTextField;
     protected Query mUserNameQuery;
     protected DatabaseReference mDatabaseReference;
     protected String currentUserName;
@@ -50,9 +51,11 @@ public class PostNewFoundReport extends AppCompatActivity {
     private String currentUser;
     private TextView coordinates;
     private TextView addressText;
-    private static TextView dateFoundText;
+    private TextView dateFoundText;
     private static String datePicked;
     private DatePickerDialog datePicker;
+    private Button submitFound;
+    private Button cancelButton;
 
     // Firebase tools
     protected FirebaseAuth mFirebaseAuth;
@@ -64,6 +67,16 @@ public class PostNewFoundReport extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_new_found);
+        mTitleTextField = (EditText) findViewById(R.id.postFoundReportName);
+        mDescriptionTextField = (EditText) findViewById(R.id.postFoundReportDescription);
+        submitFound = findViewById(R.id.submitFound);
+        coordinates = findViewById(R.id.postFoundCoordinates);
+        addressText = findViewById(R.id.textView11);
+        cancelButton = findViewById(R.id.cancelButton);
+
+
+
+
         // TODO: Implement the logic to get the necessary information from the
         // EditText elements and push a new foundReport into the Firebase.
         // This requires us to have an xml that has the necessary id's. So Whoever
@@ -74,12 +87,11 @@ public class PostNewFoundReport extends AppCompatActivity {
          *
          */
         // Get reference to the 'users' tree in the Firebase Database
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference("users");
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference("found_reports");
         mGetLocationButton = findViewById(R.id.getFoundLocationButton);
         mDateFoundPickerButton = (Button) findViewById(R.id.pickDateFoundButton);
         dateFoundText = findViewById(R.id.postFoundDateFound);
 
-        dateFoundText.setText(datePicked);
 
         mFirebaseAuth = FirebaseAuth.getInstance(); // Will use this to get the username of the person logged in.
 
@@ -111,12 +123,55 @@ public class PostNewFoundReport extends AppCompatActivity {
                 datePicker.show();
             }
         });
+        // submit button, will first do empty field checks, then send to firebase.
+        submitFound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mTitleTextField.getText().toString().trim().equals("") ||
+                        dateFoundText.getText().toString().equals("unselected") ||
+                        coordinates.getText().toString().equals("no location selected") ||
+                        addressText.getText().toString().equals("no address selected") ||
+                        mDescriptionTextField.getText().toString().trim().equals("")){
+                    Toast.makeText(getApplicationContext(), "Please fill in all appropriate" +
+                            " fields", Toast.LENGTH_LONG).show();
 
+
+                } else {
+                    // helper to send to firebase
+                    pushToFireBase();
+                    Toast.makeText(getApplicationContext(), "report sucessfully filed", Toast.LENGTH_LONG)
+                            .show();
+                    finish();
+
+                }
+
+            }
+        });
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
     }
 
+    public void pushToFireBase(){
+        String mTitle = mTitleTextField.getText().toString().trim();
+        String dateFound = dateFoundText.getText().toString().trim();
+        String coor = coordinates.getText().toString();
+        String[] coorSeperated = coor.split(",");
+        LatLng latLongFound = new LatLng(new Double(coorSeperated[0]), new Double(coorSeperated[1]));
+        String address = addressText.getText().toString();
+        String descript = mDescriptionTextField.getText().toString();
+        ItemReport reportFiled = new ItemReport(mTitle, descript, mFirebaseAuth.getCurrentUser().getDisplayName(),
+                new Date(dateFound), new Date(dateFound),latLongFound, address, true );
+        String id = mDatabaseReference.push().getKey();
+        mDatabaseReference.child(id).setValue(reportFiled);
 
+    }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.i(TAG, "onActivityResult: Enter");
@@ -126,11 +181,10 @@ public class PostNewFoundReport extends AppCompatActivity {
         curr_address = data.getStringExtra("curr_address");
 
         Log.i(TAG, "onActivityResult: curr_lng: "+ curr_Lng + " curr_lat: " + curr_Lat + " curr_address: "+ curr_address);
-
         coordinates = findViewById(R.id.postFoundCoordinates);
+
         coordinates.setText(new DecimalFormat("###.##").format(curr_Lat).toString() + ", " +
                 new DecimalFormat("###.##").format(curr_Lng).toString());
-
         addressText = findViewById(R.id.textView11);
         addressText.setText(curr_address);
 
