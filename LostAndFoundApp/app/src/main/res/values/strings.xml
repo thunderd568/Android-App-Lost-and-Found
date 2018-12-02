@@ -24,12 +24,16 @@
     <string name="title_found_tab">Found</string>
 
     <string name="btUpdateProfile">Submit Change</string>
+    <string name="changeimage">Change Image</string>
     <string name="tvUpdateProfileName">User Name</string>
     <string name="tvUpdateProfileEmail">User Email</string>
     <string name="ChangePassword">New Password</string>
     <string name="ConfirmPassword">Confirm Password</string>
     <string name="CurrentPassword">Current Password</string>
+    <string name="Username">Username</string>
 
+
+    <string name="EditProfileImage">Edit Profile Image</string>
 
     <string name="WelcomeBack">Welcome Back</string>
 

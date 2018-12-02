@@ -108,7 +108,7 @@ public class LostFragment extends Fragment {
                 String status = snapshot.child("status").getValue().toString();
                 String title = snapshot.child("title").getValue().toString();
                 String type = snapshot.child("type").getValue().toString();
-
+                String id = snapshot.child("reportId").getValue().toString();
                 // Make a new latLng object. We can't deserialize the LatLng object inside our object
                 // So the work around is to get the double values, make a new LatLng object
                 // and pass it into the constructor. Note that since this is the found fragment
@@ -117,7 +117,7 @@ public class LostFragment extends Fragment {
 
 
                 ItemReport report = new ItemReport(title, description, author, dateOccurred,
-                        dateAuthored, latLng, address, true);
+                        dateAuthored, latLng, address, false, id);
 
                 myLostReports.add(report);
 
