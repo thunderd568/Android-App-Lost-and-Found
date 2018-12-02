@@ -31,13 +31,12 @@
     <string name="CurrentPassword">Current Password</string>
 
 
-
     <string name="WelcomeBack">Welcome Back</string>
 
     <string name="tbProfileName">User Name</string>
     <string name="tvProfileEmail">User Email</string>
     <string name="updateProfile">Update Profile</string>
-    <string name = "cancel">Cancel</string>
+    <string name="cancel">Cancel</string>
 
     <string name="LOSTFOUND">LOST "\u0026" FOUND</string>
 
@@ -50,4 +49,14 @@
     <string name="title_Lost_tab">Lost</string>
     <string name="title_activity_post_new_found_report">PostNewFoundReport</string>
     <string name="title_activity_post_new_lost_report">PostNewLostReportActivity</string>
+
+    <string-array name="radius_spinner_options">
+        <item>5 miles</item>
+        <item>2 miles</item>
+        <item>1 miles</item>
+        <item>0.5 miles</item>
+        <item>0.25 miles</item>
+        <item>500 feet</item>
+        <item>250 feet</item>
+    </string-array>
 </resources>

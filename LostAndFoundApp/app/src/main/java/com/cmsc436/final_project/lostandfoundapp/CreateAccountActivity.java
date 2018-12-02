@@ -73,7 +73,6 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     }
 
-
     private void createUser(){
         final String email = mEmailView.getText().toString().trim();
         final String password = mPasswordView.getText().toString().trim();
@@ -124,11 +123,6 @@ public class CreateAccountActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
-
-
-
-
 }
 
