@@ -111,7 +111,7 @@ public class EditProfileFragment extends Fragment {
 
                         mUser = new Users(email, rating, username, imageUrl,id);
                         Log.i(TAG, "onDataChange:  "+ mUser.toString());
-                        Username.setText(mUser.username);
+                        Username.setText(mUser.getUsername());
                         if (mUser.getImageURL().equals("default")) {
                             image_profile.setImageResource(R.mipmap.ic_launcher);
 
@@ -181,7 +181,7 @@ public class EditProfileFragment extends Fragment {
                         String mUri = downloadUri.toString();
 
                         // problem here
-                        reference = FirebaseDatabase.getInstance().getReference("users").child(mUser.id);
+                        reference = FirebaseDatabase.getInstance().getReference("users").child(mUser.getId());
                         Log.i(TAG, "here~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~: "+ reference.toString());
 
                         HashMap<String,Object> map = new HashMap<>();
