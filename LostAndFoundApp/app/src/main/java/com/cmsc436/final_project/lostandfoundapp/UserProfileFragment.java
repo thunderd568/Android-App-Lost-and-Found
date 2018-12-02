@@ -66,7 +66,7 @@ public class UserProfileFragment extends Fragment {
         user = firebaseAuth.getCurrentUser();
         mEmail = user.getEmail();
         uri = user.getPhotoUrl();
-        profile_image = fragview.findViewById(R.id.profileImage);
+        profile_image = fragview.findViewById(R.id.user_profileImage);
 
 
 
@@ -89,30 +89,36 @@ public class UserProfileFragment extends Fragment {
         databaseUsers.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (getActivity() == null) {
+                    return;
+                }
 
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     String username = snapshot.child("username").getValue().toString();
                     String email = snapshot.child("email").getValue().toString();
+                    String id;
+                    if(snapshot.child("id").getValue() != null) {
+                        id = snapshot.child("id").getValue().toString();
+                    }else{
+                        id = "";
+                    }
                     int rating = snapshot.child("rating").getValue(Integer.class);
                     String imageUrl = snapshot.child("imageURL").getValue(String.class);
                     if(email.equals(mEmail)) {
-                        mUser = new Users(email, rating, username,imageUrl);
+                        mUser = new Users(email, rating, username,imageUrl,id);
                         Log.i(TAG, "onDataChange: " + mUser.username + " " +
-                                mUser.rating + " " + mUser.email);
+                                mUser.rating + " " + mUser.email +"  " +mUser.imageURL);
 
                         Username.setText(mUser.username);
                         Email.setText(mUser.email);
                         ratingBar.setNumStars(mUser.rating);
-                        Users user = dataSnapshot.getValue(Users.class);
 
-                        if(mUser.getImageURL().equals("default")){
+                        if (mUser.getImageURL().equals("default")) {
                             profile_image.setImageResource(R.mipmap.ic_launcher);
-                        }else{
-                            Glide.with(getContext()).load(user.getImageURL()).into(profile_image);
 
+                        } else {
+                            Glide.with(getContext()).load(mUser.getImageURL()).into(profile_image);
                         }
-
-
                     }
                 }
             }

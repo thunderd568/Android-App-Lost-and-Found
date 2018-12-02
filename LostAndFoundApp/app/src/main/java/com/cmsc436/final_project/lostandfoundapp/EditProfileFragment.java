@@ -71,14 +71,14 @@ public class EditProfileFragment extends Fragment {
     private Uri imageUri;
     private StorageTask uploadTask;
     CircleImageView ProfileImage;
-
+    Users mUser;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
 
-        image_profile = view.findViewById(R.id.ProfileImage);
+        image_profile = view.findViewById(R.id.edit_ProfileImage);
         Username = view.findViewById(R.id.username);
         storageReference = FirebaseStorage.getInstance().getReference("uploads");
         reference = FirebaseDatabase.getInstance().getReference("users");
@@ -88,26 +88,39 @@ public class EditProfileFragment extends Fragment {
 
 
         mEmail = user.getEmail();
+        Log.i(TAG, "onCreateView: curr email" + mEmail.toString());
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (getActivity() == null) {
+                    return;
+                }
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     String username = snapshot.child("username").getValue().toString();
                     String email = snapshot.child("email").getValue().toString();
+                    String id;
+                    if(snapshot.child("id").getValue() != null) {
+                        id = snapshot.child("id").getValue().toString();
+                    }else{
+                        id = "";
+                    }
                     int rating = snapshot.child("rating").getValue(Integer.class);
                     String imageUrl = snapshot.child("imageURL").getValue(String.class);
 
+
                     if(email.equals(mEmail)) {
 
-                        Users mUser = new Users(email, rating, username, imageUrl);
+                        Log.i(TAG, "onDataChange: 11111 " + dataSnapshot.toString());
+
+                        mUser = new Users(email, rating, username, imageUrl,id);
+                        Log.i(TAG, "onDataChange:  "+ mUser.toString());
                         Username.setText(mUser.username);
                         if (mUser.getImageURL().equals("default")) {
-                            image_profile.setImageResource(R.drawable.default_image);
+                            image_profile.setImageResource(R.mipmap.ic_launcher);
 
                         } else {
-                            Glide.with(EditProfileFragment.this).load(mUser.getImageURL()).into(image_profile);
-
+                            Glide.with(getContext()).load(mUser.getImageURL()).into(image_profile);
                         }
                     }
                 }
@@ -172,7 +185,9 @@ public class EditProfileFragment extends Fragment {
                         String mUri = downloadUri.toString();
 
                         // problem here
-                        reference = FirebaseDatabase.getInstance().getReference("users").child(user.getUid());
+                        reference = FirebaseDatabase.getInstance().getReference("users").child(mUser.id);
+                        Log.i(TAG, "here~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~: "+ reference.toString());
+
                         HashMap<String,Object> map = new HashMap<>();
                         map.put("imageURL",mUri);
                         reference.updateChildren(map);
@@ -200,7 +215,7 @@ public class EditProfileFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == IMAGE_REQUEST
+        if (requestCode == IMAGE_REQUEST && resultCode == Activity.RESULT_OK
                 && data != null && data.getData() != null){
             imageUri = data.getData();
 

@@ -111,7 +111,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                     // create key in real time database
                     mProfileImage.setImageResource(R.mipmap.ic_launcher);
                     String id = database.push().getKey();
-                    database.child(id).setValue(new Users(email, 0, username,imageUrl));
+                    database.child(id).setValue(new Users(email, 0, username,imageUrl,id));
                     FirebaseUser newUser = mFirebaseAuth.getCurrentUser();
 
                     // This fragment of code will set the display name of the logged in user so it is

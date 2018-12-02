@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,6 +34,8 @@ import com.google.firebase.auth.EmailAuthProvider;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class UpdateProfileFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private String TAG = "Update Profile Fragment";
@@ -45,6 +48,8 @@ public class UpdateProfileFragment extends Fragment {
     FirebaseUser user;
     Button cancel, update;
     CheckBox editImage;
+    Users mUser;
+    CircleImageView profileImage;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -62,7 +67,9 @@ public class UpdateProfileFragment extends Fragment {
 
         cancel = fragview.findViewById(R.id.cancel);
         update = fragview.findViewById(R.id.btProfileUpdateSubmit);
+        profileImage = fragview.findViewById(R.id.update_ProfileImage);
         email.setText(mEmail);
+
 
 
 
@@ -137,5 +144,50 @@ public class UpdateProfileFragment extends Fragment {
         Intent intent = new Intent(getActivity(),LoginActivity.class);
         startActivity(intent);
         ((Activity) getActivity()).overridePendingTransition(0,0);
+    }
+
+
+    public void onStart(){
+        super.onStart();
+
+        databaseUsers.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (getActivity() == null) {
+                    return;
+                }
+
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    String username = snapshot.child("username").getValue().toString();
+                    String email = snapshot.child("email").getValue().toString();
+                    String id;
+                    if(snapshot.child("id").getValue() != null) {
+                        id = snapshot.child("id").getValue().toString();
+                    }else{
+                        id = "";
+                    }
+                    int rating = snapshot.child("rating").getValue(Integer.class);
+                    String imageUrl = snapshot.child("imageURL").getValue(String.class);
+                    if(email.equals(mEmail)) {
+                        mUser = new Users(email, rating, username,imageUrl,id);
+                        Log.i(TAG, "onDataChange: " + mUser.username + " " +
+                                mUser.rating + " " + mUser.email);
+
+                        if (mUser.getImageURL().equals("default")) {
+                            profileImage.setImageResource(R.mipmap.ic_launcher);
+
+                        } else {
+                            Glide.with(getContext()).load(mUser.getImageURL()).into(profileImage);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 }

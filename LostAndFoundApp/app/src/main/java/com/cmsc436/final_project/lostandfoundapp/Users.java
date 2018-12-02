@@ -10,11 +10,12 @@ public class Users {
     String imageURL;
 
 
-    public Users(String email, int rating, String username,String imageURL){
+    public Users(String email, int rating, String username,String imageURL, String id){
         this.email = email;
         this.rating = rating;
         this.username = username;
         this.imageURL = imageURL;
+        this.id = id;
     }
     public Users()
     {}
