@@ -48,7 +48,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MapActivity" />
         <activity android:name=".SearchFoundReportsActivity" />
-        <activity android:name=".ItemDetailPage"></activity>
+        <activity android:name=".ItemDetailPage" />
+        <activity android:name=".SearchResults"></activity>
     </application>
 
 </manifest>
