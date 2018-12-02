@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,7 +44,7 @@ public class UpdateProfileFragment extends Fragment {
     TextView email;
     FirebaseUser user;
     Button cancel, update;
-
+    CheckBox editImage;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -74,6 +75,16 @@ public class UpdateProfileFragment extends Fragment {
             }
         });
 
+        editImage = (CheckBox) fragview.findViewById(R.id.EditProfileImage);
+        editImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.tab_fragment_container,new EditProfileFragment());
+                ft.commit();
+            }
+        });
+
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,26 +92,18 @@ public class UpdateProfileFragment extends Fragment {
                 mCpassword = cPassword.getText().toString().trim();
                 oldPassword = currentPassword.getText().toString().trim();
 
-/*
-                    user.updatePassword(mPassword);
-                    firebaseAuth.updateCurrentUser(user);
-                    password.getText().clear();
-                    cPassword.getText().clear();
-                    Toast.makeText(getContext(), "Password has been updated", Toast.LENGTH_LONG).show();*/
-
-
-                    AuthCredential credential = EmailAuthProvider.getCredential(mEmail,oldPassword);
-                    user.reauthenticate(credential)
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        if(!mPassword.equals(mCpassword)){
-                                            Toast.makeText(getContext(),"Please check if both passwords are the same", Toast.LENGTH_LONG).show();
-                                        }else if(mPassword.length() < 6 ) {
-                                            Toast.makeText(getContext(), "Password must be at least 6 characters", Toast.LENGTH_LONG).show();
-                                        }else{
-                                            user.updatePassword(mPassword).addOnCompleteListener(new OnCompleteListener<Void>() {
+                AuthCredential credential = EmailAuthProvider.getCredential(mEmail,oldPassword);
+                user.reauthenticate(credential)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    if(!mPassword.equals(mCpassword)){
+                                        Toast.makeText(getContext(),"Please check if both passwords are the same", Toast.LENGTH_LONG).show();
+                                    }else if(mPassword.length() < 6 ) {
+                                        Toast.makeText(getContext(), "Password must be at least 6 characters", Toast.LENGTH_LONG).show();
+                                    }else{
+                                        user.updatePassword(mPassword).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
@@ -115,14 +118,14 @@ public class UpdateProfileFragment extends Fragment {
                                                     Toast.makeText(getContext(), "Password could not be changed", Toast.LENGTH_LONG).show();
                                                 }
                                             }
-                                            });
-                                        }
-                                    }else{
-                                        Log.d(TAG, "Error auth failed");
-                                        Toast.makeText(getContext(), "Old Password is incorrect!! Please Check", Toast.LENGTH_LONG).show();
+                                        });
                                     }
+                                }else{
+                                    Log.d(TAG, "Error auth failed");
+                                    Toast.makeText(getContext(), "Old Password is incorrect!! Please Check", Toast.LENGTH_LONG).show();
                                 }
-                            });
+                            }
+                        });
             }
         });
 
