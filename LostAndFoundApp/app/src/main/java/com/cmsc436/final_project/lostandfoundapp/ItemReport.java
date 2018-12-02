@@ -30,8 +30,9 @@ public class ItemReport {
     private ReportType mType;
     private ReportMethod mMethod;
     private ReportStatus mStatus;
-
-    public ItemReport(String mTitle, String mDescription, String mAuthor, Date mDateOccurred, Date mDateAuthored, LatLng mLatLng, String mAddress, boolean isFound) {
+    public String reportId;
+    public ItemReport(String mTitle, String mDescription, String mAuthor, Date mDateOccurred, Date mDateAuthored, LatLng mLatLng, String mAddress, boolean isFound
+    , String reportId) {
         this.mTitle = mTitle;
         this.mDescription = mDescription;
         this.mAuthor = mAuthor;
@@ -42,6 +43,7 @@ public class ItemReport {
         this.mType = (isFound) ? (ReportType.FOUND) : (ReportType.LOST);
         this.mMethod = (mAddress == null) ? (ReportMethod.LOCATION) : (ReportMethod.ADDRESS);
         this.mStatus = ReportStatus.PENDING;
+        this.reportId = reportId;
     }
 
     // Default Constructor
@@ -127,6 +129,9 @@ public class ItemReport {
 
     public void setStatus(ReportStatus mStatus) {
         this.mStatus = mStatus;
+    }
+    public String getID(){
+        return this.reportId;
     }
 
     // TODO: implement consistent system of tagging
