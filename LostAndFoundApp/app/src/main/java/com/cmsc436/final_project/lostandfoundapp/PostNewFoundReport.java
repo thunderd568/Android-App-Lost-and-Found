@@ -177,33 +177,18 @@ public class PostNewFoundReport extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.i(TAG, "onActivityResult: Enter");
 
-<<<<<<< HEAD
-=======
-        curr_Lat = data.getDoubleExtra("curr_lat",0.0);
-        curr_Lng = data.getDoubleExtra("curr_lng", 0.0);
-        curr_address = data.getStringExtra("curr_address");
-
-        Log.i(TAG, "onActivityResult: curr_lng: "+ curr_Lng + " curr_lat: " + curr_Lat + " curr_address: "+ curr_address);
-        coordinates = findViewById(R.id.postFoundCoordinates);
-
-        coordinates.setText(new DecimalFormat("###.##").format(curr_Lat).toString() + ", " +
-                new DecimalFormat("###.##").format(curr_Lng).toString());
-        addressText = findViewById(R.id.postFoundAddress);
-        addressText.setText(curr_address);
-
->>>>>>> f889e924682f8615f0822c00a40d2047fdadb5d5
-        if(MAP_ACTIVITY_RESULT_CODE == requestCode && RESULT_OK == requestCode){
+        if(MAP_ACTIVITY_RESULT_CODE == requestCode && RESULT_OK == resultCode){
             ItemReport foundReport = new ItemReport();
             curr_Lat = data.getDoubleExtra("curr_lat",0.0);
             curr_Lng = data.getDoubleExtra("curr_lng", 0.0);
             curr_address = data.getStringExtra("curr_address");
 
             Log.i(TAG, "onActivityResult: curr_lng: "+ curr_Lng + " curr_lat: " + curr_Lat + " curr_address: "+ curr_address);
-            coordinates = findViewById(R.id.searchFoundCoordinates);
+            coordinates = findViewById(R.id.postFoundCoordinates);
 
             coordinates.setText(new DecimalFormat("###.##").format(curr_Lat).toString() + ", " +
                     new DecimalFormat("###.##").format(curr_Lng).toString());
-            addressText = findViewById(R.id.searchFoundAddress);
+            addressText = findViewById(R.id.postFoundAddress);
             addressText.setText(curr_address);
         }
 

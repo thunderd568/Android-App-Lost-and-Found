@@ -165,7 +165,7 @@ public class PostNewLostReportActivity extends AppCompatActivity {
 //TODO: CHECK REQUEST CODE;
 
 
-        if(MAP_ACTIVITY_RESULT_CODE == requestCode && RESULT_OK == requestCode){
+        if(MAP_ACTIVITY_RESULT_CODE == requestCode && RESULT_OK == resultCode){
             ItemReport foundReport = new ItemReport();
             curr_Lat = data.getDoubleExtra("curr_lat",0.0);
             curr_Lng = data.getDoubleExtra("curr_lng", 0.0);
