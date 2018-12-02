@@ -61,7 +61,6 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
                 Log.i("ReportAdapter", "Starting intent to go to the item page for " + report.getTitle());
 
                 String toastString = "You clicked on " + report.getTitle();
-                Toast.makeText(mCtx, toastString, Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(mCtx, ItemDetailPage.class);
                 // Include extras
@@ -70,6 +69,8 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
                 intent.putExtra("address", report.getAddress());
                 intent.putExtra("dateAuthored", report.getDateAuthored());
                 intent.putExtra("dateOccurred", report.getDateOccurred());
+                intent.putExtra("status", report.getStatus());
+                intent.putExtra("isFound", report.getType());
 
                 // Break up the LatLng object fields as doubles. We can't pass a LatLng object
                 // into an intent extra :(
