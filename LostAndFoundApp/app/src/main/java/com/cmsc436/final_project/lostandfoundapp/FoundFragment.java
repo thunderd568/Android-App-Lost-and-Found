@@ -35,6 +35,9 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class FoundFragment extends Fragment {
+
+    private static final String TAG = "FoundFragment";
+
     ArrayList<ItemReport> myFoundReports;
     RecyclerView myReportsRecyclerView;
     DatabaseReference databaseFoundItems;
@@ -46,6 +49,7 @@ public class FoundFragment extends Fragment {
 
     //Buttons
     Button newFoundReportButton;
+    Button searchFoundReportsButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,6 +84,17 @@ public class FoundFragment extends Fragment {
             }
         });
 
+
+        // Search Found Report Button logic
+        searchFoundReportsButton = fragView.findViewById(R.id.buttonSearchFound);
+        searchFoundReportsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "Entering onClick for Searching found reports");
+                Intent intent = new Intent(getContext(), SearchFoundReportsActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
 
