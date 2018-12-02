@@ -99,12 +99,8 @@ public class EditProfileFragment extends Fragment {
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     String username = snapshot.child("username").getValue().toString();
                     String email = snapshot.child("email").getValue().toString();
-                    String id;
-                    if(snapshot.child("id").getValue() != null) {
-                        id = snapshot.child("id").getValue().toString();
-                    }else{
-                        id = "";
-                    }
+                    String id = snapshot.child("id").getValue().toString();
+
                     int rating = snapshot.child("rating").getValue(Integer.class);
                     String imageUrl = snapshot.child("imageURL").getValue(String.class);
 
