@@ -100,4 +100,4 @@ public class ItemDetailPage extends AppCompatActivity {
         datePostedInfo.setText(mDate.toString());
 
     }
-}
+}    
