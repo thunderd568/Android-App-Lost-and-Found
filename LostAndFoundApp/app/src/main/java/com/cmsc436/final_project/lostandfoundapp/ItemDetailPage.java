@@ -13,8 +13,7 @@ import java.util.Date;
 
 public class ItemDetailPage extends AppCompatActivity {
 
-    private TextView titleReportText, addressDetailText, datePostedInfo, reportDescriptionText
-            ,authorPostInfo;
+    private TextView titleReportText, addressDetailText, datePostedInfo, reportDescriptionText;
     private Button deletePostButton;
     private Button contactAuthorButton;
 
@@ -47,7 +46,6 @@ public class ItemDetailPage extends AppCompatActivity {
         titleReportText = findViewById(R.id.titleReportText);
         addressDetailText = findViewById(R.id.addressDetailText);
         datePostedInfo = findViewById(R.id.datePostedInfo);
-        authorPostInfo = findViewById(R.id.authorPostInfo);
         reportDescriptionText = findViewById(R.id.reportDescriptionText);
         deletePostButton = findViewById(R.id.deletePostButton);
         contactAuthorButton = findViewById(R.id.contactAuthorButton);
@@ -57,7 +55,6 @@ public class ItemDetailPage extends AppCompatActivity {
         Intent intent = getIntent();
         mTitle = intent.getStringExtra("title");
         mAddress = intent.getStringExtra("address");
-        reportAuthor = intent.getStringExtra("author");
         mDescription = intent.getStringExtra("description");
         mDate = (Date) intent.getSerializableExtra("dateAuthored");
 
@@ -75,7 +72,7 @@ public class ItemDetailPage extends AppCompatActivity {
             contactAuthorButton.setVisibility(View.VISIBLE);
         }
 
-        setTextViews(mTitle, mAddress, reportAuthor, mDescription, mDate);
+        setTextViews(mTitle, mAddress, mDescription, mDate);
 
         // TODO: Implement the button functionality for contacting the OP and deleting a post
         deletePostButton.setOnClickListener(new View.OnClickListener() {
@@ -96,10 +93,9 @@ public class ItemDetailPage extends AppCompatActivity {
 
     }
 
-    private void setTextViews(String mTitle, String mAddress, String author, String mDescription, Date mDate) {
+    private void setTextViews(String mTitle, String mAddress, String mDescription, Date mDate) {
         titleReportText.setText(mTitle);
         addressDetailText.setText(mAddress);
-        authorPostInfo.setText(author);
         reportDescriptionText.setText(mDescription);
         datePostedInfo.setText(mDate.toString());
 
