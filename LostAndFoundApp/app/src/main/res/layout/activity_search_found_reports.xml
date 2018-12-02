@@ -105,11 +105,24 @@
     <Spinner
         android:id="@+id/radiusSearchFoundSpinner"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="24dp"
         android:layout_marginEnd="8dp"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
         app:layout_constraintBaseline_toBaselineOf="@+id/radiusSearchFoundHeader"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/searchFoundAddress" />
+
+    <Button
+        android:id="@+id/launchSearchFoundButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:text="Search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radiusSearchFoundHeader"
+        tools:text="Search" />
 
 </android.support.constraint.ConstraintLayout>
