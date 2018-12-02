@@ -71,7 +71,7 @@ public class PostNewFoundReport extends AppCompatActivity {
         mDescriptionTextField = (EditText) findViewById(R.id.postFoundReportDescription);
         submitFound = findViewById(R.id.submitFound);
         coordinates = findViewById(R.id.postFoundCoordinates);
-        addressText = findViewById(R.id.textView11);
+        addressText = findViewById(R.id.postFoundAddress);
         cancelButton = findViewById(R.id.cancelButton);
 
 
@@ -185,7 +185,7 @@ public class PostNewFoundReport extends AppCompatActivity {
 
         coordinates.setText(new DecimalFormat("###.##").format(curr_Lat).toString() + ", " +
                 new DecimalFormat("###.##").format(curr_Lng).toString());
-        addressText = findViewById(R.id.textView11);
+        addressText = findViewById(R.id.postFoundAddress);
         addressText.setText(curr_address);
 
         if(MAP_ACTIVITY_RESULT_CODE == requestCode && RESULT_OK == requestCode){
