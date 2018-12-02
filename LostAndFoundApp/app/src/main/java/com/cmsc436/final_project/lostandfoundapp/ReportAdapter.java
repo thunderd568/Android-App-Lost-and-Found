@@ -1,12 +1,18 @@
 package com.cmsc436.final_project.lostandfoundapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.database.core.Repo;
 
 import java.util.List;
 
@@ -36,7 +42,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
     @Override
     public void onBindViewHolder(ReportViewHolder holder, int position) {
         //getting the product of the specified position
-        ItemReport report = reportList.get(position);
+        final ItemReport report = reportList.get(position);
 
         //binding the data with the viewholder views
         holder.textViewTitle.setText(report.getTitle());
@@ -46,6 +52,35 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
         holder.textViewDescription.setText(report.getDescription());
 
         holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(R.drawable.lostfound_icon,null));
+
+        // This will make our items that show up in this Recycler view 'clickable' and once
+        // clicked they will go to the items detail report page.
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("ReportAdapter", "Starting intent to go to the item page for " + report.getTitle());
+
+                String toastString = "You clicked on " + report.getTitle();
+                Toast.makeText(mCtx, toastString, Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(mCtx, ItemDetailPage.class);
+                // Include extras
+                intent.putExtra("title", report.getTitle());
+                intent.putExtra("author", report.getAuthor());
+                intent.putExtra("address", report.getAddress());
+                intent.putExtra("dateAuthored", report.getDateAuthored());
+                intent.putExtra("dateOccurred", report.getDateOccurred());
+
+                // Break up the LatLng object fields as doubles. We can't pass a LatLng object
+                // into an intent extra :(
+                LatLng mLatlng = report.getLatLng();
+                intent.putExtra("latitude", mLatlng.latitude);
+                intent.putExtra("longitude", mLatlng.longitude);
+
+                // If we need to package anything else go ahead and do so here!
+                mCtx.startActivity(intent);
+            }
+        });
 
     }
 

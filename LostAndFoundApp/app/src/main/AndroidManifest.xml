@@ -47,7 +47,8 @@
             android:label="@string/title_activity_post_new_lost_report"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MapActivity" />
-        <activity android:name=".SearchFoundReportsActivity"></activity>
+        <activity android:name=".SearchFoundReportsActivity" />
+        <activity android:name=".ItemDetailPage"></activity>
     </application>
 
 </manifest>
