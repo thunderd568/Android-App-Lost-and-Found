@@ -31,13 +31,12 @@
     <string name="CurrentPassword">Current Password</string>
 
 
-
     <string name="WelcomeBack">Welcome Back</string>
 
     <string name="tbProfileName">User Name</string>
     <string name="tvProfileEmail">User Email</string>
     <string name="updateProfile">Update Profile</string>
-    <string name = "cancel">Cancel</string>
+    <string name="cancel">Cancel</string>
 
     <string name="LOSTFOUND">LOST "\u0026" FOUND</string>
 

@@ -125,7 +125,7 @@
         android:text="Description:"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/postFoundAddressHeader"
         tools:text="Description:" />
 
     <TextView
@@ -140,7 +140,7 @@
         app:layout_constraintTop_toBottomOf="@+id/postFoundReportNameHeader" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/postFoundAddressHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -151,13 +151,13 @@
         app:layout_constraintTop_toBottomOf="@+id/postFoundCoordinatesHeader" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/postFoundAddress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:text="no address selected"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView10"
+        app:layout_constraintBaseline_toBaselineOf="@+id/postFoundAddressHeader"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/postFoundCoordinates" />
