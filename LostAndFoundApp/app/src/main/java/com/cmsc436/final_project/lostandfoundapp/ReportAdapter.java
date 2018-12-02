@@ -70,8 +70,8 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
                 intent.putExtra("dateAuthored", report.getDateAuthored());
                 intent.putExtra("dateOccurred", report.getDateOccurred());
                 intent.putExtra("status", report.getStatus());
-                intent.putExtra("isFound", report.getType());
-
+                intent.putExtra("isFound", report.getType() == ItemReport.ReportType.LOST ?0:1 );
+                intent.putExtra("reportID", report.reportId);
                 // Break up the LatLng object fields as doubles. We can't pass a LatLng object
                 // into an intent extra :(
                 LatLng mLatlng = report.getLatLng();

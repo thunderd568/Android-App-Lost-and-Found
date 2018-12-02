@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Date;
 
@@ -21,9 +23,11 @@ public class ItemDetailPage extends AppCompatActivity {
     private String mTitle, mDescription, mAddress, reportAuthor;
     private double mLatitude, mLongitude;
     private Date mDate;
-
+    String id;
+    int type;
     //Firebase stuff
     private FirebaseAuth mFirebaseAuth;
+    private DatabaseReference mdatabaseRef;
 
 
     @Override
@@ -57,10 +61,11 @@ public class ItemDetailPage extends AppCompatActivity {
         mAddress = intent.getStringExtra("address");
         mDescription = intent.getStringExtra("description");
         mDate = (Date) intent.getSerializableExtra("dateAuthored");
-
+        type = intent.getIntExtra("isFound", 0);
         // If the person viewing this post is the author of the post then only show them the button
         // to delete the post, not contact the poster. Show the other button otherwise
         reportAuthor = intent.getStringExtra("author");
+        id = intent.getStringExtra("reportID");
 
         if (reportAuthor.equals(mFirebaseAuth.getCurrentUser().getDisplayName())) {
             // Make the visibility of the delete button true and the contact button false
@@ -78,6 +83,15 @@ public class ItemDetailPage extends AppCompatActivity {
         deletePostButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(type == 0){
+                    mdatabaseRef = FirebaseDatabase.getInstance().getReference("lost_reports");
+                    deleteItemFireBase();
+                } else {
+                    mdatabaseRef = FirebaseDatabase.getInstance().getReference("found_reports");
+                    deleteItemFireBase();
+
+
+                }
 
             }
         });
@@ -93,6 +107,11 @@ public class ItemDetailPage extends AppCompatActivity {
 
     }
 
+    private void deleteItemFireBase() {
+        mdatabaseRef.child(id).removeValue();
+        finish();
+    }
+
     private void setTextViews(String mTitle, String mAddress, String mDescription, Date mDate) {
         titleReportText.setText(mTitle);
         addressDetailText.setText(mAddress);
@@ -100,4 +119,4 @@ public class ItemDetailPage extends AppCompatActivity {
         datePostedInfo.setText(mDate.toString());
 
     }
-}    
+}

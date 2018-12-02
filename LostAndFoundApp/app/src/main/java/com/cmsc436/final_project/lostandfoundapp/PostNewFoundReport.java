@@ -166,9 +166,10 @@ public class PostNewFoundReport extends AppCompatActivity {
         LatLng latLongFound = new LatLng(new Double(coorSeperated[0]), new Double(coorSeperated[1]));
         String address = addressText.getText().toString();
         String descript = mDescriptionTextField.getText().toString();
-        ItemReport reportFiled = new ItemReport(mTitle, descript, mFirebaseAuth.getCurrentUser().getDisplayName(),
-                new Date(dateFound), new Date(dateFound),latLongFound, address, true );
         String id = mDatabaseReference.push().getKey();
+
+        ItemReport reportFiled = new ItemReport(mTitle, descript, mFirebaseAuth.getCurrentUser().getDisplayName(),
+                new Date(dateFound), new Date(dateFound),latLongFound, address, true, id );
         mDatabaseReference.child(id).setValue(reportFiled);
 
     }
@@ -181,11 +182,11 @@ public class PostNewFoundReport extends AppCompatActivity {
         curr_address = data.getStringExtra("curr_address");
 
         Log.i(TAG, "onActivityResult: curr_lng: "+ curr_Lng + " curr_lat: " + curr_Lat + " curr_address: "+ curr_address);
-        coordinates = findViewById(R.id.searchFoundCoordinates);
+        coordinates = findViewById(R.id.postFoundCoordinates);
 
         coordinates.setText(new DecimalFormat("###.##").format(curr_Lat).toString() + ", " +
                 new DecimalFormat("###.##").format(curr_Lng).toString());
-        addressText = findViewById(R.id.searchFoundAddress);
+        addressText = findViewById(R.id.postFoundAddress);
         addressText.setText(curr_address);
 
         if(MAP_ACTIVITY_RESULT_CODE == requestCode && RESULT_OK == requestCode){
