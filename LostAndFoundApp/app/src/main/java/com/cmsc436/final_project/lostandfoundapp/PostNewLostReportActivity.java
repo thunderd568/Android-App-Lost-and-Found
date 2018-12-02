@@ -151,10 +151,11 @@ public class PostNewLostReportActivity extends AppCompatActivity {
         LatLng latLongFound = new LatLng(new Double(coorSeperated[0]), new Double(coorSeperated[1]));
         String address = mAddressView.getText().toString();
         String descript = mDescription.getText().toString();
+        String reportId = mDatabaseReference.push().getKey();
+
         ItemReport reportFiled = new ItemReport(mTitle, descript, mFirebaseAuth.getCurrentUser().getDisplayName(),
-                new Date(dateFound), new Date(dateFound), latLongFound, address, true);
-        String id = mDatabaseReference.push().getKey();
-        mDatabaseReference.child(id).setValue(reportFiled);
+                new Date(dateFound), new Date(dateFound), latLongFound, address, false, reportId);
+        mDatabaseReference.child(reportId).setValue(reportFiled);
     }
 
 
