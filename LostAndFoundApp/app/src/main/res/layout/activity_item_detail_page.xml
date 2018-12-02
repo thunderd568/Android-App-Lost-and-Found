@@ -44,7 +44,7 @@
 
     <TextView
         android:id="@+id/reportDescriptionText"
-        android:layout_width="370dp"
+        android:layout_width="0dp"
         android:layout_height="184dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -96,6 +96,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Posted On :"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reportedFromLocationText" />
 
@@ -111,4 +112,31 @@
         app:layout_constraintHorizontal_bias="0.403"
         app:layout_constraintStart_toEndOf="@+id/datePostedOnText"
         app:layout_constraintTop_toBottomOf="@+id/addressDetailText" />
+
+    <TextView
+        android:id="@+id/authorText"
+        android:layout_width="104dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Posted by :"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintBottom_toTopOf="@+id/reportDescriptionText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/datePostedOnText" />
+
+    <TextView
+        android:id="@+id/authorPostInfo"
+        android:layout_width="260dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/reportDescriptionText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/authorText"
+        app:layout_constraintTop_toBottomOf="@+id/datePostedInfo"
+        app:layout_constraintVertical_bias="0.9" />
 </android.support.constraint.ConstraintLayout>
