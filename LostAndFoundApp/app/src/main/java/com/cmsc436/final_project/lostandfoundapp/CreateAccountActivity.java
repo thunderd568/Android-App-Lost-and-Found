@@ -2,6 +2,7 @@ package com.cmsc436.final_project.lostandfoundapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -30,6 +31,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class CreateAccountActivity extends AppCompatActivity {
 
@@ -38,6 +41,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     private EditText mPasswordView;
     private EditText mconfirmPass;
     private EditText mUserName;
+    private CircleImageView mProfileImage;
     private DatabaseReference database;
     private static final String TAG = "CreateAccount";
 
@@ -52,6 +56,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         mPasswordView = findViewById(R.id.createPassword);
         mconfirmPass = findViewById(R.id.confirmPassword);
         mUserName = findViewById(R.id.username);
+        mProfileImage = findViewById(R.id.profileImage);
         database = FirebaseDatabase.getInstance().getReference("users");
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -78,6 +83,8 @@ public class CreateAccountActivity extends AppCompatActivity {
         final String password = mPasswordView.getText().toString().trim();
         String confirm = mconfirmPass.getText().toString().trim();
         final String username = mUserName.getText().toString().trim();
+        final String imageUrl = "default";
+
         // check to make sure every field is filled in
         if(email.equals("") || password.equals("") || username.equals("")){
             Toast.makeText(this, "Enter a valid email, username, or password", Toast.LENGTH_LONG).show();
@@ -101,8 +108,9 @@ public class CreateAccountActivity extends AppCompatActivity {
                 // Verify if the account creation was successful.
                 if (task.isSuccessful()) {
                     // create key in real time database
+                    mProfileImage.setImageResource(R.mipmap.ic_launcher);
                     String id = database.push().getKey();
-                    database.child(id).setValue(new Users(email, 0, username));
+                    database.child(id).setValue(new Users(email, 0, username,imageUrl,id));
                     FirebaseUser newUser = mFirebaseAuth.getCurrentUser();
                     // This fragment of code will set the display name of the logged in user so it is
                     // easily retrievable using the method for a firebase user, getDisplayName().
@@ -112,6 +120,11 @@ public class CreateAccountActivity extends AppCompatActivity {
                         newUser.updateProfile(profileUpdates);
                     }
                     Toast.makeText(CreateAccountActivity.this, "Account Created", Toast.LENGTH_LONG).show();
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> b253c611e14602adfc3d57a7a8884ebf6b26a0f4
                     // Upon successful login, Start the next activity to go to next screen
                     // TODO: make an intent to start the next activity to take user to next screen.
                     // This may require us to pass in some extra information. I'm not sure yet.
