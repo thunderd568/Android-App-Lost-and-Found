@@ -1,6 +1,8 @@
 package com.cmsc436.final_project.lostandfoundapp;
 
 import android.content.Intent;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -14,6 +16,7 @@ import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -23,7 +26,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
+import java.net.URI;
 import java.util.ArrayList;
+import android.net.Uri;
+import java.net.URL;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**
@@ -35,11 +43,13 @@ public class UserProfileFragment extends Fragment {
     private String TAG = "User Profile Fragment";
     Users mUser;
     DatabaseReference databaseUsers;
-    String mEmail;
+    String mEmail,mImage;
     TextView Username,Email;
     RatingBar ratingBar;
     Button updateProfileButton;
     FirebaseUser user;
+    CircleImageView profile_image;
+    Uri uri;
 
 
     @Override
@@ -55,6 +65,10 @@ public class UserProfileFragment extends Fragment {
         ratingBar = fragview.findViewById(R.id.ratingBar);
         user = firebaseAuth.getCurrentUser();
         mEmail = user.getEmail();
+        uri = user.getPhotoUrl();
+        profile_image = fragview.findViewById(R.id.user_profileImage);
+
+
 
         updateProfileButton = (Button) fragview.findViewById(R.id.updateProfile);
         updateProfileButton.setOnClickListener(new View.OnClickListener() {
@@ -75,20 +89,36 @@ public class UserProfileFragment extends Fragment {
         databaseUsers.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (getActivity() == null) {
+                    return;
+                }
 
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     String username = snapshot.child("username").getValue().toString();
                     String email = snapshot.child("email").getValue().toString();
+                    String id;
+                    if(snapshot.child("id").getValue() != null) {
+                        id = snapshot.child("id").getValue().toString();
+                    }else{
+                        id = "";
+                    }
                     int rating = snapshot.child("rating").getValue(Integer.class);
-
+                    String imageUrl = snapshot.child("imageURL").getValue(String.class);
                     if(email.equals(mEmail)) {
-                        mUser = new Users(email, rating, username);
+                        mUser = new Users(email, rating, username,imageUrl,id);
                         Log.i(TAG, "onDataChange: " + mUser.username + " " +
-                                mUser.rating + " " + mUser.email);
+                                mUser.rating + " " + mUser.email +"  " +mUser.imageURL);
 
                         Username.setText(mUser.username);
                         Email.setText(mUser.email);
                         ratingBar.setNumStars(mUser.rating);
+
+                        if (mUser.getImageURL().equals("default")) {
+                            profile_image.setImageResource(R.mipmap.ic_launcher);
+
+                        } else {
+                            Glide.with(getContext()).load(mUser.getImageURL()).into(profile_image);
+                        }
                     }
                 }
             }
