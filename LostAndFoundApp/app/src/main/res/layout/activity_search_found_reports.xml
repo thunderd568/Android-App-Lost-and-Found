@@ -124,4 +124,49 @@
         app:layout_constraintTop_toBottomOf="@+id/radiusSearchFoundHeader"
         app:layout_constraintVertical_bias="0.0" />
 
+    <Button
+        android:id="@+id/startDateFoundButton"
+        android:layout_width="110dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="START DATE"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radiusSearchFoundHeader" />
+
+    <Button
+        android:id="@+id/endDateFoundButton"
+        android:layout_width="110dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="8dp"
+        android:text="END DATE"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startDateFoundButton" />
+
+    <TextView
+        android:id="@+id/startDateText"
+        android:layout_width="121dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.307"
+        app:layout_constraintStart_toEndOf="@+id/startDateFoundButton"
+        app:layout_constraintTop_toBottomOf="@+id/radiusSearchFoundSpinner" />
+
+    <TextView
+        android:id="@+id/endDateText"
+        android:layout_width="177dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toEndOf="@+id/endDateFoundButton"
+        app:layout_constraintTop_toBottomOf="@+id/startDateText" />
+
 </android.support.constraint.ConstraintLayout>

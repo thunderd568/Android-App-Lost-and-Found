@@ -18,6 +18,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class SearchResults extends AppCompatActivity {
@@ -106,6 +107,9 @@ public class SearchResults extends AppCompatActivity {
                 //Log.i( "testing","did my author "+currentAuthor+" get here in time");
                 //Log.i("testing","hasChildren: "+dataSnapshot.hasChildren());
                 int i = 0;
+                Toast.makeText(getApplicationContext(), "early date chosen " +earlyBound.toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "later date chosen " +lateBound.toString(), Toast.LENGTH_LONG).show();
+
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
                     i++;
                     String address = snapshot.child("address").getValue().toString();
@@ -132,11 +136,22 @@ public class SearchResults extends AppCompatActivity {
                     ItemReport report = new ItemReport(title, description, author, dateOccurred,
                             dateAuthored, latLng, address, type.equals("FOUND"), id, authorEmailAddress);
 
+                    Calendar lowBound = Calendar.getInstance();
+                    lowBound.setTime(earlyBound);
+                    Calendar calRipkin = Calendar.getInstance();
+                    lowBound.setTime(dateOccurred);
+                    Calendar highBound = Calendar.getInstance();
+                    lowBound.setTime(lateBound);
+
+
                     if(locationSelected && (longitude<lngMin || lngMax<longitude || lat<latMin || latMax<lat)){
+
                         continue;
-                    }else if(isEarlyBoundSelected && earlyBound.compareTo(dateOccurred)>0) {
+                    }else if(isEarlyBoundSelected
+                            && lowBound.compareTo(calRipkin)>0) {
                         continue;
-                    }else if(isLateBoundSelected && lateBound.compareTo(dateOccurred)<0) {
+                    }else if(isLateBoundSelected && highBound.compareTo(calRipkin)<0) {
+
                         continue;
                     } else {
                         myReports.add(report);
