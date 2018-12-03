@@ -125,10 +125,13 @@ public class SearchFoundReportsActivity extends AppCompatActivity {
                 intent.putExtra("latMin", latMin);
                 intent.putExtra("lngMax", lngMax);
                 intent.putExtra("lngMin", lngMin);
+
                 intent.putExtra("earlyBoundSelected", (earlyBoundSelected ? 1 : 0));
                 intent.putExtra("earlyBound", earlyBound);
                 intent.putExtra("lateBoundSelected", (lateBoundSelected ? 1 : 0));
                 intent.putExtra("lateBound", lateBound);
+
+                intent.putExtra("isFound", 0);
 
                 startActivity(intent);
             }
