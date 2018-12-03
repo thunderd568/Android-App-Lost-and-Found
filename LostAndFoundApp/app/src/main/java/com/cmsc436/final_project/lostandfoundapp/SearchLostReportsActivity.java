@@ -22,22 +22,22 @@ import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class SearchFoundReportsActivity extends AppCompatActivity {
+public class SearchLostReportsActivity extends AppCompatActivity {
 
-    private static String found_reports = "found_reports";
+    private static String lost_reports = "lost_reports";
     private static final int MAP_ACTIVITY_RESULT_CODE = 0;
-    private static final String TAG = "SearchFoundReport";
+    private static final String TAG = "SearchLostReport";
 
     private FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabaseReference;
 
     // Buttons and textfields.
-    private Button mLocationSearchingFoundButton;
-    private TextView mSearchFoundCoordinates, mSearchFoundAddress;
-    private Spinner mRadiusSearchFoundSpinner;
-    private Button mLaunchSearchFoundButton;
-    private Button mStartDateFoundButton;
-    private Button mEndDateFoundButton;
+    private Button mLocationSearchingLostButton;
+    private TextView mSearchLostCoordinates, mSearchLostAddress;
+    private Spinner mRadiusSearchLostSpinner;
+    private Button mLaunchSearchLostButton;
+    private Button mStartDateLostButton;
+    private Button mEndDateLostButton;
     private TextView startDateTextView; // This will show the date the user picked
     private TextView endDateTextView; // This will show the end date the user picked.
 
@@ -61,19 +61,19 @@ public class SearchFoundReportsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_found_reports);
+        setContentView(R.layout.activity_search_lost_reports);
 
         // Init instance variables
         mFirebaseAuth = FirebaseAuth.getInstance();
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference(found_reports);
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference(lost_reports);
 
-        mLocationSearchingFoundButton = findViewById(R.id.getFoundSearchLocationButton);
-        mSearchFoundCoordinates = findViewById(R.id.searchFoundCoordinates);
-        mSearchFoundAddress = findViewById(R.id.searchFoundAddress);
-        mLaunchSearchFoundButton = findViewById(R.id.launchSearchFoundButton);
+        mLocationSearchingLostButton = findViewById(R.id.getLostSearchLocationButton);
+        mSearchLostCoordinates = findViewById(R.id.searchLostCoordinates);
+        mSearchLostAddress = findViewById(R.id.searchLostAddress);
+        mLaunchSearchLostButton = findViewById(R.id.launchSearchLostButton);
 
-        mStartDateFoundButton = findViewById(R.id.startDateFoundButton);
-        mEndDateFoundButton = findViewById(R.id.endDateFoundButton);
+        mStartDateLostButton = findViewById(R.id.startDateLostButton);
+        mEndDateLostButton = findViewById(R.id.endDateLostButton);
         startDateTextView = findViewById(R.id.startDateText);
         endDateTextView = findViewById(R.id.endDateText);
 
@@ -83,13 +83,13 @@ public class SearchFoundReportsActivity extends AppCompatActivity {
         endDate = Calendar.getInstance();
 
 
-        mRadiusSearchFoundSpinner = findViewById(R.id.radiusSearchFoundSpinner);
+        mRadiusSearchLostSpinner = findViewById(R.id.radiusSearchLostSpinner);
         ArrayAdapter<CharSequence> mArrayAdapter = ArrayAdapter.createFromResource(
                 this, R.array.radius_spinner_options, android.R.layout.simple_spinner_item);
         mArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mRadiusSearchFoundSpinner.setAdapter(mArrayAdapter);
-        mRadiusSearchFoundSpinner.setSelection(4);
-        mRadiusSearchFoundSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        mRadiusSearchLostSpinner.setAdapter(mArrayAdapter);
+        mRadiusSearchLostSpinner.setSelection(4);
+        mRadiusSearchLostSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 switch(position){
@@ -131,7 +131,7 @@ public class SearchFoundReportsActivity extends AppCompatActivity {
 
 
         // The logic for the datepicker buttons
-        mStartDateFoundButton.setOnClickListener(new View.OnClickListener() {
+        mStartDateLostButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "Date picker button was clicked");
@@ -140,7 +140,7 @@ public class SearchFoundReportsActivity extends AppCompatActivity {
                 int currDay = startDate.get(Calendar.DAY_OF_MONTH);
                 int currYear = startDate.get(Calendar.YEAR);
 
-                mDatePickerStart = new DatePickerDialog(SearchFoundReportsActivity.this, new DatePickerDialog.OnDateSetListener() {
+                mDatePickerStart = new DatePickerDialog(SearchLostReportsActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         startDate.set(year, month, day);
@@ -156,7 +156,7 @@ public class SearchFoundReportsActivity extends AppCompatActivity {
         });
 
         // Now the end date picker
-        mEndDateFoundButton.setOnClickListener(new View.OnClickListener() {
+        mEndDateLostButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "Date picker button was clicked");
@@ -165,7 +165,7 @@ public class SearchFoundReportsActivity extends AppCompatActivity {
                 int currDay = c.get(Calendar.DAY_OF_MONTH);
                 int currYear = c.get(Calendar.YEAR);
 
-                mDatePickerEnd = new DatePickerDialog(SearchFoundReportsActivity.this, new DatePickerDialog.OnDateSetListener() {
+                mDatePickerEnd = new DatePickerDialog(SearchLostReportsActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         endDate.set(year, month, day);
@@ -184,7 +184,7 @@ public class SearchFoundReportsActivity extends AppCompatActivity {
 
 
 
-        mLocationSearchingFoundButton.setOnClickListener(new View.OnClickListener() {
+        mLocationSearchingLostButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "Entering onClick method for Get Location button");
@@ -193,7 +193,7 @@ public class SearchFoundReportsActivity extends AppCompatActivity {
             }
         });
 
-        mLaunchSearchFoundButton.setOnClickListener(new View.OnClickListener() {
+        mLaunchSearchLostButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SearchResults.class);
@@ -213,7 +213,7 @@ public class SearchFoundReportsActivity extends AppCompatActivity {
                     intent.putExtra("lateBoundSelected", (lateBoundSelected ? 1 : 0));
                     intent.putExtra("lateBound", lateBound);
 
-                    intent.putExtra("isFound", 1);
+                    intent.putExtra("isFound", 0);
 
 
                     startActivity(intent);
@@ -234,14 +234,14 @@ public class SearchFoundReportsActivity extends AppCompatActivity {
             curr_Lng = data.getDoubleExtra("curr_lng", 0.0);
             String curr_address = data.getStringExtra("curr_address");
 
-            mSearchFoundCoordinates = findViewById(R.id.searchFoundCoordinates);
+            mSearchLostCoordinates = findViewById(R.id.searchLostCoordinates);
 
             Log.i(TAG, "onActivityResult: curr_lng: " + curr_Lng + " curr_lat: " + curr_Lat + " curr_address: " + curr_address);
 
-            mSearchFoundCoordinates.setText(new DecimalFormat("###.##").format(curr_Lat).toString() + ", " +
+            mSearchLostCoordinates.setText(new DecimalFormat("###.##").format(curr_Lat).toString() + ", " +
                     new DecimalFormat("###.##").format(curr_Lng).toString());
-            mSearchFoundAddress = findViewById(R.id.searchFoundAddress);
-            mSearchFoundAddress.setText(curr_address);
+            mSearchLostAddress = findViewById(R.id.searchLostAddress);
+            mSearchLostAddress.setText(curr_address);
 
             calcLatLngMaxMin();
         }

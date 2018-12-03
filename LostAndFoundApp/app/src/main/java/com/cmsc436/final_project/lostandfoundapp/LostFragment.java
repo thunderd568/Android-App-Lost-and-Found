@@ -37,6 +37,7 @@ public class LostFragment extends Fragment {
     protected RecyclerView myReportsRecyclerView;
     protected ArrayList<ItemReport> myLostReports;
     protected Button submitLostReportButton;
+    protected Button searchLostReportsButton;
     protected FirebaseAuth mFirebaseAuth;
     protected DatabaseReference mDatabaseReference;
     protected Query mReportsQuery;
@@ -58,10 +59,6 @@ public class LostFragment extends Fragment {
 
         myReportsRecyclerView.setAdapter(mReportAdapter);
 
-
-
-
-
         submitLostReportButton = fragView.findViewById(R.id.buttonAddLost);
         // When a user clicks add new lost report button they will be taken to that
         // activity
@@ -70,6 +67,17 @@ public class LostFragment extends Fragment {
             public void onClick(View view) {
                 Log.i(TAG, "Add lost report button was clicked. Entering PostNewLostReport Activity");
                 Intent intent = new Intent(getContext(), PostNewLostReportActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Search Lost Report Button logic
+        searchLostReportsButton = fragView.findViewById(R.id.buttonSearchLost);
+        searchLostReportsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "Entering onClick for Searching lost reports");
+                Intent intent = new Intent(getContext(), SearchLostReportsActivity.class);
                 startActivity(intent);
             }
         });
@@ -112,8 +120,8 @@ public class LostFragment extends Fragment {
                 String authorEmail = snapshot.child("authorEmailAddress").getValue().toString();
                 // Make a new latLng object. We can't deserialize the LatLng object inside our object
                 // So the work around is to get the double values, make a new LatLng object
-                // and pass it into the constructor. Note that since this is the found fragment
-                // "true" will be passed in as the argument...duh!
+                // and pass it into the constructor. Note that since this is the lost fragment
+                // "false" will be passed in as the argument...duh!
                 LatLng latLng = new LatLng(lat, longitude);
 
 

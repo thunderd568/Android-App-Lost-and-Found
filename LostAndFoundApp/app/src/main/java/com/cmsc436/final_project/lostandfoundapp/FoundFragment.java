@@ -84,7 +84,6 @@ public class FoundFragment extends Fragment {
             }
         });
 
-
         // Search Found Report Button logic
         searchFoundReportsButton = fragView.findViewById(R.id.buttonSearchFound);
         searchFoundReportsButton.setOnClickListener(new View.OnClickListener() {
@@ -95,9 +94,6 @@ public class FoundFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
-
-
 
         // Inflate the layout for this fragment
         return fragView;
