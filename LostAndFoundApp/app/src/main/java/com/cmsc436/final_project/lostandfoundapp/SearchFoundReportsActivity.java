@@ -146,24 +146,25 @@ public class SearchFoundReportsActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.i(TAG, "coming back from MapActivity with results");
-        locationSelected = true;
+        if(MAP_ACTIVITY_RESULT_CODE == requestCode && RESULT_OK == resultCode) {
+            locationSelected = true;
 
-        // Store the results in variables.
-        curr_Lat = data.getDoubleExtra("curr_lat",0.0);
-        curr_Lng = data.getDoubleExtra("curr_lng", 0.0);
-        String curr_address = data.getStringExtra("curr_address");
+            // Store the results in variables.
+            curr_Lat = data.getDoubleExtra("curr_lat", 0.0);
+            curr_Lng = data.getDoubleExtra("curr_lng", 0.0);
+            String curr_address = data.getStringExtra("curr_address");
 
-        mSearchFoundCoordinates = findViewById(R.id.searchFoundCoordinates);
+            mSearchFoundCoordinates = findViewById(R.id.searchFoundCoordinates);
 
-        Log.i(TAG, "onActivityResult: curr_lng: "+ curr_Lng + " curr_lat: " + curr_Lat + " curr_address: "+ curr_address);
+            Log.i(TAG, "onActivityResult: curr_lng: " + curr_Lng + " curr_lat: " + curr_Lat + " curr_address: " + curr_address);
 
-        mSearchFoundCoordinates.setText(new DecimalFormat("###.##").format(curr_Lat).toString() + ", " +
-                new DecimalFormat("###.##").format(curr_Lng).toString());
-        mSearchFoundAddress = findViewById(R.id.searchFoundAddress);
-        mSearchFoundAddress.setText(curr_address);
+            mSearchFoundCoordinates.setText(new DecimalFormat("###.##").format(curr_Lat).toString() + ", " +
+                    new DecimalFormat("###.##").format(curr_Lng).toString());
+            mSearchFoundAddress = findViewById(R.id.searchFoundAddress);
+            mSearchFoundAddress.setText(curr_address);
 
-        calcLatLngMaxMin();
-
+            calcLatLngMaxMin();
+        }
     }
 
     void calcLatLngMaxMin(){
