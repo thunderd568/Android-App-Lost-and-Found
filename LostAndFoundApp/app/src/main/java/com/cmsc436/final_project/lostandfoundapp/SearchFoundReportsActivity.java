@@ -1,5 +1,6 @@
 package com.cmsc436.final_project.lostandfoundapp;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DecimalFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class SearchFoundReportsActivity extends AppCompatActivity {
@@ -33,6 +36,14 @@ public class SearchFoundReportsActivity extends AppCompatActivity {
     private TextView mSearchFoundCoordinates, mSearchFoundAddress;
     private Spinner mRadiusSearchFoundSpinner;
     private Button mLaunchSearchFoundButton;
+    private Button mStartDateFoundButton;
+    private Button mEndDateFoundButton;
+    private TextView startDateTextView; // This will show the date the user picked
+    private TextView endDateTextView; // This will show the end date the user picked.
+
+    private DatePickerDialog mDatePickerStart, mDatePickerEnd;
+    private Calendar startDate, endDate;
+    private int startMonth, startDay, startYear, endMonth, endDay, endYear;
 
     boolean locationSelected = false;
     double curr_Lat = 0.0;
@@ -60,6 +71,16 @@ public class SearchFoundReportsActivity extends AppCompatActivity {
         mSearchFoundCoordinates = findViewById(R.id.searchFoundCoordinates);
         mSearchFoundAddress = findViewById(R.id.searchFoundAddress);
         mLaunchSearchFoundButton = findViewById(R.id.launchSearchFoundButton);
+
+        mStartDateFoundButton = findViewById(R.id.startDateFoundButton);
+        mEndDateFoundButton = findViewById(R.id.endDateFoundButton);
+        startDateTextView = findViewById(R.id.startDateText);
+        endDateTextView = findViewById(R.id.endDateText);
+
+        // init datepicker
+
+        startDate = Calendar.getInstance();
+        endDate = Calendar.getInstance();
 
 
         mRadiusSearchFoundSpinner = findViewById(R.id.radiusSearchFoundSpinner);
@@ -108,6 +129,61 @@ public class SearchFoundReportsActivity extends AppCompatActivity {
             }
         });
 
+
+        // The logic for the datepicker buttons
+        mStartDateFoundButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "Date picker button was clicked");
+                startDate = Calendar.getInstance();
+                int currMonth = startDate.get(Calendar.MONTH);
+                int currDay = startDate.get(Calendar.DAY_OF_MONTH);
+                int currYear = startDate.get(Calendar.YEAR);
+
+                mDatePickerStart = new DatePickerDialog(SearchFoundReportsActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        startDate.set(year, month, day);
+                        startDateTextView.setText((month + 1) + "/" + day + "/" + year);
+                        earlyBound = new Date(year, month, day);
+                        Toast.makeText(getApplicationContext(), month + " " + day + " " + year, Toast.LENGTH_LONG).show();
+                        earlyBoundSelected = true;
+                    }
+                }, currYear, currMonth, currDay);
+                mDatePickerStart.getDatePicker().setMaxDate(startDate.getTimeInMillis());
+                mDatePickerStart.show();
+            }
+        });
+
+        // Now the end date picker
+        mEndDateFoundButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "Date picker button was clicked");
+                Calendar c = Calendar.getInstance();
+                int currMonth = c.get(Calendar.MONTH);
+                int currDay = c.get(Calendar.DAY_OF_MONTH);
+                int currYear = c.get(Calendar.YEAR);
+
+                mDatePickerEnd = new DatePickerDialog(SearchFoundReportsActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        endDate.set(year, month, day);
+                        endDateTextView.setText((month + 1) + "/" + day + "/" + year);
+                        lateBound = new Date(year, month, day);
+                        Toast.makeText(getApplicationContext(), month + " " + day + " " + year, Toast.LENGTH_LONG).show();
+                        lateBoundSelected = true;
+
+                    }
+                }, currYear, currMonth, currDay);
+                mDatePickerEnd.getDatePicker().setMaxDate(endDate.getTimeInMillis());
+                mDatePickerEnd.show();
+            }
+        });
+
+
+
+
         mLocationSearchingFoundButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,20 +197,27 @@ public class SearchFoundReportsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SearchResults.class);
-                intent.putExtra("locationSelected", (locationSelected ? 1 : 0));
-                intent.putExtra("latMax", latMax);
-                intent.putExtra("latMin", latMin);
-                intent.putExtra("lngMax", lngMax);
-                intent.putExtra("lngMin", lngMin);
 
-                intent.putExtra("earlyBoundSelected", (earlyBoundSelected ? 1 : 0));
-                intent.putExtra("earlyBound", earlyBound);
-                intent.putExtra("lateBoundSelected", (lateBoundSelected ? 1 : 0));
-                intent.putExtra("lateBound", lateBound);
+                if (startDate.compareTo(endDate) > 0) {
+                    Toast.makeText(getApplicationContext(), "Enter valid dates", Toast.LENGTH_LONG).show();
+                } else {
 
-                intent.putExtra("isFound", 1);
+                    intent.putExtra("locationSelected", (locationSelected ? 1 : 0));
+                    intent.putExtra("latMax", latMax);
+                    intent.putExtra("latMin", latMin);
+                    intent.putExtra("lngMax", lngMax);
+                    intent.putExtra("lngMin", lngMin);
 
-                startActivity(intent);
+                    intent.putExtra("earlyBoundSelected", (earlyBoundSelected ? 1 : 0));
+                    intent.putExtra("earlyBound", earlyBound);
+                    intent.putExtra("lateBoundSelected", (lateBoundSelected ? 1 : 0));
+                    intent.putExtra("lateBound", lateBound);
+
+                    intent.putExtra("isFound", 1);
+
+
+                    startActivity(intent);
+                }
             }
         });
 
