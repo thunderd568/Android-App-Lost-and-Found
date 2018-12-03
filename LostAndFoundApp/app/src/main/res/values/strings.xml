@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Lost"\u0026"Found</string>
+    <string name="LOSTFOUND">LOST "\u0026" FOUND</string>
 
     <!--API kay Don't Change!!!-->
     <string name="google_maps_API_key">AIzaSyBc_t0LxRpEZFDmCnhA1PWB1wQFqt3_N64</string>
@@ -25,7 +26,7 @@
     <string name="myLostReports">My Lost Reports</string>
     <string name="myFoundReports">My Found Reports</string>
 
-    <string name="btUpdateProfile">Submit Change</string>
+    <string name="btUpdateProfile">Submit</string>
     <string name="changeImage">Change Image</string>
     <string name="tvUpdateProfileName">User Name</string>
     <string name="tvUpdateProfileEmail">User Email</string>
@@ -37,18 +38,21 @@
     <string name="editProfileImage">Edit Image</string>
     <string name="back">Back</string>
     <string name="cancel">Cancel</string>
-    <string name="welcomeBack">Welcome back</string>
+    <string name="welcomeBack">Welcome back!</string>
     <string name="tbProfileName">Username</string>
     <string name="tvProfileEmail">Email</string>
     <string name="updateProfile">Update Profile</string>
     <string name="searchExisting">Search Existing</string>
     <string name="addNew">New Report</string>
 
-    <string name="LOSTFOUND">LOST "\u0026" FOUND</string>
-
-
     <string name="map_hint">Enter Address, City or Zip Code</string>
     <string name="get_location">Get Location</string>
+
+    <string name="missingTitle">Missing Title</string>
+    <string name="missingDate">Missing Date</string>
+    <string name="missingAddress">Missing Address</string>
+    <string name="missingDescription">Missing Description</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
