@@ -368,8 +368,6 @@ public class MapActivity extends AppCompatActivity implements
         }
     }
 
-
-
     private AdapterView.OnItemClickListener mAutocompleteClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -420,10 +418,6 @@ public class MapActivity extends AppCompatActivity implements
             places.release();
         }
     };
-
-
-
-
 
 
 }
