@@ -15,7 +15,8 @@ import java.util.Date;
 
 public class ItemDetailPage extends AppCompatActivity {
 
-    private TextView titleReportText, addressDetailText, datePostedInfo, reportDescriptionText;
+    private TextView titleReportText, addressDetailText, datePostedInfo, reportDescriptionText,
+            authorDetailTextView;
     private Button deletePostButton;
     private Button contactAuthorButton;
 
@@ -53,6 +54,7 @@ public class ItemDetailPage extends AppCompatActivity {
         reportDescriptionText = findViewById(R.id.reportDescriptionText);
         deletePostButton = findViewById(R.id.deletePostButton);
         contactAuthorButton = findViewById(R.id.contactAuthorButton);
+        authorDetailTextView = findViewById(R.id.authorPostInfo);
 
 
         // Begin unpackaging intent extras here
@@ -81,7 +83,7 @@ public class ItemDetailPage extends AppCompatActivity {
             contactAuthorButton.setVisibility(View.VISIBLE);
         }
 
-        setTextViews(mTitle, mAddress, mDescription, mDate);
+        setTextViews(mTitle, mAddress, mDescription, mDate, reportAuthor);
 
         // TODO: Implement the button functionality for contacting the OP and deleting a post
         deletePostButton.setOnClickListener(new View.OnClickListener() {
@@ -126,11 +128,14 @@ public class ItemDetailPage extends AppCompatActivity {
         finish();
     }
 
-    private void setTextViews(String mTitle, String mAddress, String mDescription, Date mDate) {
+    private void setTextViews(String mTitle, String mAddress, String mDescription, Date mDate,
+                              String reportAuthor) {
         titleReportText.setText(mTitle);
         addressDetailText.setText(mAddress);
         reportDescriptionText.setText(mDescription);
         datePostedInfo.setText(mDate.toString());
+        authorDetailTextView.setText(reportAuthor);
+
 
     }
 }

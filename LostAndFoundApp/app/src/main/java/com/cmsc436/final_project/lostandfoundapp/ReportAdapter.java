@@ -51,7 +51,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
                 (report.getAddress()!=null) ? report.getAddress() : report.getLatLng().toString());
         holder.textViewDescription.setText(report.getDescription());
 
-        holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(R.drawable.lostfound_icon,null));
+        //holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(R.drawable.lostfound_icon,null));
 
         // This will make our items that show up in this Recycler view 'clickable' and once
         // clicked they will go to the items detail report page.
@@ -72,6 +72,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
                 intent.putExtra("status", report.getStatus());
                 intent.putExtra("isFound", report.getType() == ItemReport.ReportType.LOST ?0:1 );
                 intent.putExtra("reportID", report.reportId);
+                intent.putExtra("description", report.getDescription());
                 // Break up the LatLng object fields as doubles. We can't pass a LatLng object
                 // into an intent extra :(
                 LatLng mLatlng = report.getLatLng();
@@ -96,7 +97,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
     class ReportViewHolder extends RecyclerView.ViewHolder {
 
         TextView textViewTitle, textViewDateOccur, textViewAddress, textViewDescription;
-        ImageView imageView;
+        //ImageView imageView;
 
         public ReportViewHolder(View itemView) {
             super(itemView);
@@ -105,7 +106,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
             textViewDateOccur = itemView.findViewById(R.id.textViewDateOccur);
             textViewAddress = itemView.findViewById(R.id.textViewAddress);
             textViewDescription = itemView.findViewById(R.id.textViewDescription);
-            imageView = itemView.findViewById(R.id.imageView);
+            //imageView = itemView.findViewById(R.id.imageView);
         }
     }
 }
