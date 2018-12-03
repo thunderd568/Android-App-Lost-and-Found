@@ -66,6 +66,7 @@ public class SearchFoundReportsActivity extends AppCompatActivity {
                 this, R.array.radius_spinner_options, android.R.layout.simple_spinner_item);
         mArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mRadiusSearchFoundSpinner.setAdapter(mArrayAdapter);
+        mRadiusSearchFoundSpinner.setSelection(4);
         mRadiusSearchFoundSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -125,10 +126,13 @@ public class SearchFoundReportsActivity extends AppCompatActivity {
                 intent.putExtra("latMin", latMin);
                 intent.putExtra("lngMax", lngMax);
                 intent.putExtra("lngMin", lngMin);
+
                 intent.putExtra("earlyBoundSelected", (earlyBoundSelected ? 1 : 0));
                 intent.putExtra("earlyBound", earlyBound);
                 intent.putExtra("lateBoundSelected", (lateBoundSelected ? 1 : 0));
                 intent.putExtra("lateBound", lateBound);
+
+                intent.putExtra("isFound", 0);
 
                 startActivity(intent);
             }
