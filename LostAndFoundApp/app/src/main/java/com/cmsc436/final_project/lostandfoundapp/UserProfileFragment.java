@@ -111,7 +111,7 @@ public class UserProfileFragment extends Fragment {
 
                         //Username.setText(mUser.getUsername());
                         //Email.setText(mUser.getEmail());
-                        ratingBar.setNumStars(mUser.getRating());
+                        ratingBar.setRating(mUser.getRating());
 
                         if (mUser.getImageURL().equals("default")) {
                             profile_image.setImageResource(R.mipmap.ic_launcher);
@@ -130,5 +130,6 @@ public class UserProfileFragment extends Fragment {
         });
 
     }
+
 
 }
