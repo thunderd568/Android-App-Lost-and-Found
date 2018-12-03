@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DecimalFormat;
+import java.util.Date;
 
 public class SearchFoundReportsActivity extends AppCompatActivity {
 
@@ -38,6 +39,11 @@ public class SearchFoundReportsActivity extends AppCompatActivity {
 
     double latMax, latMin, lngMax, lngMin = 0.0;
     double radiusMiles = 0.25;
+
+    boolean earlyBoundSelected = false;
+    Date earlyBound = new Date();
+    boolean lateBoundSelected = false;
+    Date lateBound = new Date();
 
 
     @Override
@@ -113,9 +119,18 @@ public class SearchFoundReportsActivity extends AppCompatActivity {
         mLaunchSearchFoundButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SearchResults.class);
+                intent.putExtra("locationSelected", (locationSelected ? 1 : 0));
+                intent.putExtra("latMax", latMax);
+                intent.putExtra("latMin", latMin);
+                intent.putExtra("lngMax", lngMax);
+                intent.putExtra("lngMin", lngMin);
+                intent.putExtra("earlyBoundSelected", (earlyBoundSelected ? 1 : 0));
+                intent.putExtra("earlyBound", earlyBound);
+                intent.putExtra("lateBoundSelected", (lateBoundSelected ? 1 : 0));
+                intent.putExtra("lateBound", lateBound);
 
-
-
+                startActivity(intent);
             }
         });
 

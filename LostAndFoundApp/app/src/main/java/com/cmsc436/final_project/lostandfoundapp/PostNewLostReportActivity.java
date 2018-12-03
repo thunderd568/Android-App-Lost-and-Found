@@ -152,9 +152,11 @@ public class PostNewLostReportActivity extends AppCompatActivity {
         String address = mAddressView.getText().toString();
         String descript = mDescription.getText().toString();
         String reportId = mDatabaseReference.push().getKey();
+        String authorEmailAddress = mFirebaseAuth.getCurrentUser().getEmail();
 
         ItemReport reportFiled = new ItemReport(mTitle, descript, mFirebaseAuth.getCurrentUser().getDisplayName(),
-                new Date(dateFound), new Date(dateFound), latLongFound, address, false, reportId);
+                new Date(dateFound), new Date(dateFound), latLongFound, address, false, reportId,
+                authorEmailAddress);
         mDatabaseReference.child(reportId).setValue(reportFiled);
     }
 
@@ -162,22 +164,22 @@ public class PostNewLostReportActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.i(TAG, "onActivityResult: Enter");
+//TODO: CHECK REQUEST CODE;
 
-        curr_Lat = data.getDoubleExtra("curr_lat",0.0);
-        curr_Lng = data.getDoubleExtra("curr_lng", 0.0);
-        curr_address = data.getStringExtra("curr_address");
 
-        Log.i(TAG, "onActivityResult: curr_lng: "+ curr_Lng + " curr_lat: " + curr_Lat + " curr_address: "+ curr_address);
-        mPostLostCoor = findViewById(R.id.postLostCoordinates);
-
-        mPostLostCoor.setText(new DecimalFormat("###.##").format(curr_Lat).toString() + ", " +
-                new DecimalFormat("###.##").format(curr_Lng).toString());
-        mAddressView = findViewById(R.id.addressInfoText);
-        mAddressView.setText(curr_address);
-
-        if(MAP_ACTIVITY_RESULT_CODE == requestCode && RESULT_OK == requestCode){
+        if(MAP_ACTIVITY_RESULT_CODE == requestCode && RESULT_OK == resultCode){
             ItemReport foundReport = new ItemReport();
+            curr_Lat = data.getDoubleExtra("curr_lat",0.0);
+            curr_Lng = data.getDoubleExtra("curr_lng", 0.0);
+            curr_address = data.getStringExtra("curr_address");
 
+            Log.i(TAG, "onActivityResult: curr_lng: "+ curr_Lng + " curr_lat: " + curr_Lat + " curr_address: "+ curr_address);
+            mPostLostCoor = findViewById(R.id.postLostCoordinates);
+
+            mPostLostCoor.setText(new DecimalFormat("###.##").format(curr_Lat).toString() + ", " +
+                    new DecimalFormat("###.##").format(curr_Lng).toString());
+            mAddressView = findViewById(R.id.addressInfoText);
+            mAddressView.setText(curr_address);
 
         }
 

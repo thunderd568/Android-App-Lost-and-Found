@@ -167,9 +167,10 @@ public class PostNewFoundReport extends AppCompatActivity {
         String address = addressText.getText().toString();
         String descript = mDescriptionTextField.getText().toString();
         String id = mDatabaseReference.push().getKey();
+        String authorEmailAddress = mFirebaseAuth.getCurrentUser().getEmail();
 
         ItemReport reportFiled = new ItemReport(mTitle, descript, mFirebaseAuth.getCurrentUser().getDisplayName(),
-                new Date(dateFound), new Date(dateFound),latLongFound, address, true, id );
+                new Date(dateFound), new Date(dateFound),latLongFound, address, true, id, authorEmailAddress);
         mDatabaseReference.child(id).setValue(reportFiled);
 
     }
@@ -177,20 +178,19 @@ public class PostNewFoundReport extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.i(TAG, "onActivityResult: Enter");
 
-        curr_Lat = data.getDoubleExtra("curr_lat",0.0);
-        curr_Lng = data.getDoubleExtra("curr_lng", 0.0);
-        curr_address = data.getStringExtra("curr_address");
-
-        Log.i(TAG, "onActivityResult: curr_lng: "+ curr_Lng + " curr_lat: " + curr_Lat + " curr_address: "+ curr_address);
-        coordinates = findViewById(R.id.postFoundCoordinates);
-
-        coordinates.setText(new DecimalFormat("###.##").format(curr_Lat).toString() + ", " +
-                new DecimalFormat("###.##").format(curr_Lng).toString());
-        addressText = findViewById(R.id.postFoundAddress);
-        addressText.setText(curr_address);
-
-        if(MAP_ACTIVITY_RESULT_CODE == requestCode && RESULT_OK == requestCode){
+        if(MAP_ACTIVITY_RESULT_CODE == requestCode && RESULT_OK == resultCode){
             ItemReport foundReport = new ItemReport();
+            curr_Lat = data.getDoubleExtra("curr_lat",0.0);
+            curr_Lng = data.getDoubleExtra("curr_lng", 0.0);
+            curr_address = data.getStringExtra("curr_address");
+
+            Log.i(TAG, "onActivityResult: curr_lng: "+ curr_Lng + " curr_lat: " + curr_Lat + " curr_address: "+ curr_address);
+            coordinates = findViewById(R.id.postFoundCoordinates);
+
+            coordinates.setText(new DecimalFormat("###.##").format(curr_Lat).toString() + ", " +
+                    new DecimalFormat("###.##").format(curr_Lng).toString());
+            addressText = findViewById(R.id.postFoundAddress);
+            addressText.setText(curr_address);
         }
 
     }

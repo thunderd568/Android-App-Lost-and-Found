@@ -20,7 +20,7 @@ public class ItemDetailPage extends AppCompatActivity {
     private Button contactAuthorButton;
 
     // These will be the items we unpackage from our intent
-    private String mTitle, mDescription, mAddress, reportAuthor;
+    private String mTitle, mDescription, mAddress, reportAuthor, authorEmailAddress;
     private double mLatitude, mLongitude;
     private Date mDate;
     String id;
@@ -66,11 +66,15 @@ public class ItemDetailPage extends AppCompatActivity {
         // to delete the post, not contact the poster. Show the other button otherwise
         reportAuthor = intent.getStringExtra("author");
         id = intent.getStringExtra("reportID");
+        authorEmailAddress = intent.getStringExtra("authorEmailAddress");
 
+
+
+        // Determine which button should be visible.
         if (reportAuthor.equals(mFirebaseAuth.getCurrentUser().getDisplayName())) {
             // Make the visibility of the delete button true and the contact button false
             deletePostButton.setVisibility(View.VISIBLE);
-            contactAuthorButton.setVisibility(View.INVISIBLE);
+            contactAuthorButton.setVisibility(View.VISIBLE);
         } else {
             // The person viewing this report is not the OP, Show them the contact author button.
             deletePostButton.setVisibility(View.INVISIBLE);
@@ -99,12 +103,22 @@ public class ItemDetailPage extends AppCompatActivity {
         contactAuthorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startEmailIntent();
             }
         });
 
 
 
+    }
+
+    private void startEmailIntent() {
+        // This will launch the default Email app on the phone to send an email to the OP
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setType("text/plain");
+        String[] recipient = {authorEmailAddress};
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, recipient);
+
+        startActivity(emailIntent);
     }
 
     private void deleteItemFireBase() {

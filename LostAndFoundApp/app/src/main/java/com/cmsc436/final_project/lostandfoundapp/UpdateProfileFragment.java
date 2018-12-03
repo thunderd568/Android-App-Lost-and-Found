@@ -165,8 +165,8 @@ public class UpdateProfileFragment extends Fragment {
                     String imageUrl = snapshot.child("imageURL").getValue(String.class);
                     if(email.equals(mEmail)) {
                         mUser = new Users(email, rating, username,imageUrl,id);
-                        Log.i(TAG, "onDataChange: " + mUser.username + " " +
-                                mUser.rating + " " + mUser.email);
+                        Log.i(TAG, "onDataChange: " + mUser.getUsername() + " " +
+                                mUser.getRating() + " " + mUser.getEmail());
 
                         if (mUser.getImageURL().equals("default")) {
                             profileImage.setImageResource(R.mipmap.ic_launcher);
