@@ -54,7 +54,8 @@
         <activity android:name=".MapActivity" />
         <activity android:name=".SearchFoundReportsActivity" />
         <activity android:name=".ItemDetailPage" />
-        <activity android:name=".SearchResults"></activity>
+        <activity android:name=".SearchResults" />
+        <activity android:name=".SearchLostReportsActivity"></activity>
     </application>
 
 </manifest>
