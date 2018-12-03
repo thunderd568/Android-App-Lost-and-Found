@@ -66,6 +66,7 @@ public class SearchFoundReportsActivity extends AppCompatActivity {
                 this, R.array.radius_spinner_options, android.R.layout.simple_spinner_item);
         mArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mRadiusSearchFoundSpinner.setAdapter(mArrayAdapter);
+        mRadiusSearchFoundSpinner.setSelection(4);
         mRadiusSearchFoundSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
