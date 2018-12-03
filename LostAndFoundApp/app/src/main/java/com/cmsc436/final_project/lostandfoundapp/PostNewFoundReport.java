@@ -120,6 +120,7 @@ public class PostNewFoundReport extends AppCompatActivity {
                         dateFoundText.setText((month + 1) + "/" + day + "/" + year);
                     }
                 }, currYear, currMonth, currDay);
+                datePicker.getDatePicker().setMaxDate(c.getTimeInMillis());
                 datePicker.show();
             }
         });
@@ -163,7 +164,7 @@ public class PostNewFoundReport extends AppCompatActivity {
         String dateFound = dateFoundText.getText().toString().trim();
         String coor = coordinates.getText().toString();
         String[] coorSeperated = coor.split(",");
-        LatLng latLongFound = new LatLng(new Double(coorSeperated[0]), new Double(coorSeperated[1]));
+        LatLng latLongFound = new LatLng(curr_Lat, curr_Lng);
         String address = addressText.getText().toString();
         String descript = mDescriptionTextField.getText().toString();
         String id = mDatabaseReference.push().getKey();
@@ -186,6 +187,7 @@ public class PostNewFoundReport extends AppCompatActivity {
 
             Log.i(TAG, "onActivityResult: curr_lng: "+ curr_Lng + " curr_lat: " + curr_Lat + " curr_address: "+ curr_address);
             coordinates = findViewById(R.id.postFoundCoordinates);
+
 
             coordinates.setText(new DecimalFormat("###.##").format(curr_Lat).toString() + ", " +
                     new DecimalFormat("###.##").format(curr_Lng).toString());

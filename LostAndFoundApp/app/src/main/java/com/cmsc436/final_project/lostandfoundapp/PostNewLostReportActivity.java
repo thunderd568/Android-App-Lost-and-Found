@@ -102,6 +102,7 @@ public class PostNewLostReportActivity extends AppCompatActivity {
                         mDateLostView.setText((month + 1) + "/" + day + "/" + year);
                     }
                 }, currYear, currMonth, currDay);
+                datePicker.getDatePicker().setMaxDate(c.getTimeInMillis());
                 datePicker.show();
             }
         });
@@ -148,7 +149,7 @@ public class PostNewLostReportActivity extends AppCompatActivity {
         String dateFound = mDateLostView.getText().toString().trim();
         String coor = mPostLostCoor.getText().toString();
         String[] coorSeperated = coor.split(",");
-        LatLng latLongFound = new LatLng(new Double(coorSeperated[0]), new Double(coorSeperated[1]));
+        LatLng latLongFound = new LatLng(curr_Lat, curr_Lng);
         String address = mAddressView.getText().toString();
         String descript = mDescription.getText().toString();
         String reportId = mDatabaseReference.push().getKey();
