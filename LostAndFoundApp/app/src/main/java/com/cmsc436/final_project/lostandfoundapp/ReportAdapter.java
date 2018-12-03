@@ -77,6 +77,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
                 LatLng mLatlng = report.getLatLng();
                 intent.putExtra("latitude", mLatlng.latitude);
                 intent.putExtra("longitude", mLatlng.longitude);
+                intent.putExtra("authorEmailAddress", report.getAuthorEmailAddress());
 
                 // If we need to package anything else go ahead and do so here!
                 mCtx.startActivity(intent);

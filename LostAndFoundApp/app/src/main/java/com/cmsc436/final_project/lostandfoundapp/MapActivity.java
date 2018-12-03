@@ -309,7 +309,6 @@ public class MapActivity extends AppCompatActivity implements
                 .title(title + " " + latLng.latitude + " "+ latLng.longitude);
         ;
         mMap.addMarker(options);
-
     }
 
     // put the map on the button of the fragment, I think it will be easy to adapt when we want

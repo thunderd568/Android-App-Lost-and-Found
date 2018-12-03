@@ -78,7 +78,6 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     }
 
-
     private void createUser(){
         final String email = mEmailView.getText().toString().trim();
         final String password = mPasswordView.getText().toString().trim();
@@ -113,7 +112,6 @@ public class CreateAccountActivity extends AppCompatActivity {
                     String id = database.push().getKey();
                     database.child(id).setValue(new Users(email, 0, username,imageUrl,id));
                     FirebaseUser newUser = mFirebaseAuth.getCurrentUser();
-
                     // This fragment of code will set the display name of the logged in user so it is
                     // easily retrievable using the method for a firebase user, getDisplayName().
                     if (newUser != null) {
@@ -121,9 +119,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                                 .setDisplayName(username).build();
                         newUser.updateProfile(profileUpdates);
                     }
-
                     Toast.makeText(CreateAccountActivity.this, "Account Created", Toast.LENGTH_LONG).show();
-
 
                     // Upon successful login, Start the next activity to go to next screen
                     // TODO: make an intent to start the next activity to take user to next screen.
@@ -131,20 +127,11 @@ public class CreateAccountActivity extends AppCompatActivity {
                     Log.i(TAG, "Account successfully created");
                     Intent intent = new Intent(CreateAccountActivity.this, NavTabsActivity.class);
                     startActivity(intent);
-
-
                 } else {
                     Toast.makeText(CreateAccountActivity.this, "Account already exists, try again", Toast.LENGTH_LONG).show();
-
-
                 }
             }
         });
-
     }
-
-
-
-
 }
 

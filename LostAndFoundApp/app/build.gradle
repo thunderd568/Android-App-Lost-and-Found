@@ -51,7 +51,6 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.2.0'
 
 
-
 }
 //firebase auth
 apply plugin: 'com.google.gms.google-services'
