@@ -152,9 +152,11 @@ public class PostNewLostReportActivity extends AppCompatActivity {
         String address = mAddressView.getText().toString();
         String descript = mDescription.getText().toString();
         String reportId = mDatabaseReference.push().getKey();
+        String authorEmailAddress = mFirebaseAuth.getCurrentUser().getEmail();
 
         ItemReport reportFiled = new ItemReport(mTitle, descript, mFirebaseAuth.getCurrentUser().getDisplayName(),
-                new Date(dateFound), new Date(dateFound), latLongFound, address, false, reportId);
+                new Date(dateFound), new Date(dateFound), latLongFound, address, false, reportId,
+                authorEmailAddress);
         mDatabaseReference.child(reportId).setValue(reportFiled);
     }
 

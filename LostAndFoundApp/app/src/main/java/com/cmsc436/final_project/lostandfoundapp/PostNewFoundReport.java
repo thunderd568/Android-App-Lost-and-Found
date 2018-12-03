@@ -167,9 +167,10 @@ public class PostNewFoundReport extends AppCompatActivity {
         String address = addressText.getText().toString();
         String descript = mDescriptionTextField.getText().toString();
         String id = mDatabaseReference.push().getKey();
+        String authorEmailAddress = mFirebaseAuth.getCurrentUser().getEmail();
 
         ItemReport reportFiled = new ItemReport(mTitle, descript, mFirebaseAuth.getCurrentUser().getDisplayName(),
-                new Date(dateFound), new Date(dateFound),latLongFound, address, true, id );
+                new Date(dateFound), new Date(dateFound),latLongFound, address, true, id, authorEmailAddress);
         mDatabaseReference.child(id).setValue(reportFiled);
 
     }

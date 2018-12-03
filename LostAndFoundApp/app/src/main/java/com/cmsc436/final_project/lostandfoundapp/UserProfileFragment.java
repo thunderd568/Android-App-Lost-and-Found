@@ -68,6 +68,10 @@ public class UserProfileFragment extends Fragment {
         uri = user.getPhotoUrl();
         profile_image = fragview.findViewById(R.id.user_profileImage);
 
+        // Display the email of the current user and the display name
+        Username.setText(firebaseAuth.getCurrentUser().getDisplayName());
+        Email.setText(firebaseAuth.getCurrentUser().getEmail());
+
 
 
         updateProfileButton = (Button) fragview.findViewById(R.id.updateProfile);
@@ -105,8 +109,8 @@ public class UserProfileFragment extends Fragment {
                         Log.i(TAG, "onDataChange: " + mUser.getUsername() + " " +
                                 mUser.getRating() + " " + mUser.getEmail());
 
-                        Username.setText(mUser.getUsername());
-                        Email.setText(mUser.getEmail());
+                        //Username.setText(mUser.getUsername());
+                        //Email.setText(mUser.getEmail());
                         ratingBar.setNumStars(mUser.getRating());
 
                         if (mUser.getImageURL().equals("default")) {

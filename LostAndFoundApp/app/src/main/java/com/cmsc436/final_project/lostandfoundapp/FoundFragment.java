@@ -158,10 +158,11 @@ public class FoundFragment extends Fragment {
                 // and pass it into the constructor. Note that since this is the found fragment
                 // "true" will be passed in as the argument...duh!
                 LatLng latLng = new LatLng(lat, longitude);
+                String authorEmailAddress = snapshot.child("authorEmailAddress").getValue().toString();
 
 
                 ItemReport report = new ItemReport(title, description, author, dateOccurred,
-                        dateAuthored, latLng, address, true, id);
+                        dateAuthored, latLng, address, true, id, authorEmailAddress);
 
                 myFoundReports.add(report);
 
