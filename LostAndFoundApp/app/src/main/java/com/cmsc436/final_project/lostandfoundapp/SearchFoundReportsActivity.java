@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -99,7 +100,6 @@ public class SearchFoundReportsActivity extends AppCompatActivity {
                 if(locationSelected){
                     calcLatLngMaxMin();
                 }
-
             }
 
             @Override
@@ -132,7 +132,7 @@ public class SearchFoundReportsActivity extends AppCompatActivity {
                 intent.putExtra("lateBoundSelected", (lateBoundSelected ? 1 : 0));
                 intent.putExtra("lateBound", lateBound);
 
-                intent.putExtra("isFound", 0);
+                intent.putExtra("isFound", 1);
 
                 startActivity(intent);
             }
@@ -146,6 +146,7 @@ public class SearchFoundReportsActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.i(TAG, "coming back from MapActivity with results");
+        locationSelected = true;
 
         // Store the results in variables.
         curr_Lat = data.getDoubleExtra("curr_lat",0.0);
@@ -170,5 +171,8 @@ public class SearchFoundReportsActivity extends AppCompatActivity {
         latMin = curr_Lat - (radiusMiles/69.1);
         lngMax = curr_Lng + (radiusMiles/(69.1*(Math.cos(curr_Lat/57.3))));
         lngMin = curr_Lng - (radiusMiles/(69.1*(Math.cos(curr_Lat/57.3))));
+        Toast.makeText(getApplicationContext(),
+                "latMax:"+latMax+",latMin:"+latMin+",lngMax:"+lngMax+",lngMin:"+lngMin,
+                Toast.LENGTH_LONG).show();
     }
 }
