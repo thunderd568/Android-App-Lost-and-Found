@@ -72,7 +72,7 @@ public class PostNewFoundReport extends AppCompatActivity {
         submitFound = findViewById(R.id.submitFound);
         coordinates = findViewById(R.id.postFoundCoordinates);
         addressText = findViewById(R.id.postFoundAddress);
-        cancelButton = findViewById(R.id.cancelButton);
+        cancelButton = findViewById(R.id.cancelFound);
 
 
 

@@ -84,7 +84,7 @@ public class PostNewLostReportActivity extends AppCompatActivity {
 
         // Getting the Views for the buttons on the page
         submitLostReportButton = findViewById(R.id.submitLost);
-        cancelLostReportButton = findViewById(R.id.cancelButton);
+        cancelLostReportButton = findViewById(R.id.cancelLost);
         mdateLostPicker = findViewById(R.id.pickDateLostButton);
         mLostLocationButton = findViewById(R.id.getLostLocationButton);
         mdateLostPicker.setOnClickListener(new View.OnClickListener() {
