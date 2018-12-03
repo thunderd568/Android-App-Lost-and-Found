@@ -44,10 +44,9 @@ public class UpdateProfileFragment extends Fragment {
     DatabaseReference databaseUsers;
     String mEmail,mPassword,mCpassword,oldPassword;
     EditText username, password,cPassword,currentPassword;
-    TextView email;
+    TextView email, editImage;
     FirebaseUser user;
     Button cancel, update;
-    CheckBox editImage;
     Users mUser;
     CircleImageView profileImage;
 
@@ -60,14 +59,14 @@ public class UpdateProfileFragment extends Fragment {
         user = firebaseAuth.getCurrentUser();
         mEmail = user.getEmail();
 
-        email = fragview.findViewById(R.id.updateuseremail);
+        email = fragview.findViewById(R.id.updateUserEmail);
         password = fragview.findViewById(R.id.changePassword);
         cPassword = fragview.findViewById(R.id.confirmPasswordChanged);
         currentPassword = fragview.findViewById(R.id.oldPassword);
 
         cancel = fragview.findViewById(R.id.cancel);
         update = fragview.findViewById(R.id.btProfileUpdateSubmit);
-        profileImage = fragview.findViewById(R.id.update_ProfileImage);
+        profileImage = fragview.findViewById(R.id.updateProfileImage);
         email.setText(mEmail);
 
 
@@ -82,7 +81,7 @@ public class UpdateProfileFragment extends Fragment {
             }
         });
 
-        editImage = (CheckBox) fragview.findViewById(R.id.EditProfileImage);
+        editImage = (TextView) fragview.findViewById(R.id.editProfileImage);
         editImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

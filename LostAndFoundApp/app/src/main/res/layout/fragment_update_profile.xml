@@ -32,6 +32,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.523"
             tools:targetApi="o" />
+
         <Button
             android:id="@+id/btProfileUpdateSubmit"
             android:layout_width="wrap_content"
@@ -49,14 +50,14 @@
             app:layout_constraintVertical_bias="0.894" />
 
         <TextView
-            android:id="@+id/updateuseremail"
+            android:id="@+id/updateUserEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:drawableStart="@drawable/email"
+            android:drawableStart="@drawable/email_icon"
             android:drawablePadding="8dp"
             android:text="@string/tvUpdateProfileEmail"
             android:textSize="24sp"
@@ -68,7 +69,7 @@
             app:layout_constraintVertical_bias="0.414" />
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/update_ProfileImage"
+            android:id="@+id/updateProfileImage"
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:layout_alignParentStart="true"
@@ -118,11 +119,11 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:autofillHints=""
+            android:drawableStart="@drawable/locked"
+            android:drawablePadding="8dp"
             android:ems="10"
             android:hint="@string/ConfirmPassword"
             android:inputType="textPassword"
-            android:drawableStart="@drawable/locked"
-            android:drawablePadding="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.477"
@@ -135,8 +136,6 @@
             android:id="@+id/cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/error"
-            android:drawablePadding="8dp"
             android:text="@string/cancel"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -145,23 +144,23 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.881" />
 
-        <CheckBox
-            android:id="@+id/EditProfileImage"
+        <TextView
+            android:id="@+id/editProfileImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:text="@string/EditProfileImage"
-            android:textSize="10sp"
+            android:text="@string/editProfileImage"
+            android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.92"
+            app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.302" />
+            app:layout_constraintVertical_bias="0.344" />
 
 
     </android.support.constraint.ConstraintLayout>

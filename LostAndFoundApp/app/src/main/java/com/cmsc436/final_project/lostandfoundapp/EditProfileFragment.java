@@ -62,7 +62,7 @@ public class EditProfileFragment extends Fragment {
 
     TextView email;
     FirebaseUser user;
-    Button cancel;
+    Button back;
     Button changeimage;
 
     // for load image
@@ -78,13 +78,13 @@ public class EditProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
 
-        image_profile = view.findViewById(R.id.edit_ProfileImage);
+        image_profile = view.findViewById(R.id.editProfileImage);
         Username = view.findViewById(R.id.username);
         storageReference = FirebaseStorage.getInstance().getReference("uploads");
         reference = FirebaseDatabase.getInstance().getReference("users");
         user = FirebaseAuth.getInstance().getCurrentUser();
-        changeimage = view.findViewById(R.id.changeimage);
-        cancel = view.findViewById(R.id.cancel);
+        changeimage = view.findViewById(R.id.changeImage);
+        back = view.findViewById(R.id.back);
 
 
         mEmail = user.getEmail();
@@ -133,11 +133,11 @@ public class EditProfileFragment extends Fragment {
             }
         });
 
-        cancel.setOnClickListener(new View.OnClickListener() {
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.tab_fragment_container,new UserProfileFragment());
+                ft.replace(R.id.tab_fragment_container,new UpdateProfileFragment());
                 ft.commit();
             }
         });

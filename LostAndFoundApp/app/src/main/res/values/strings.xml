@@ -20,11 +20,13 @@
     <string name="create_account">Create Account</string>
     <string name="title_activity_nav_tabs">NavTabsActivity</string>
     <string name="title_profile_tab">Profile</string>
-    <string name="title_lost_tab">Lost</string>
-    <string name="title_found_tab">Found</string>
+    <string name="title_lost_tab">Lost Items</string>
+    <string name="title_found_tab">Found Items</string>
+    <string name="myLostReports">My Lost Reports</string>
+    <string name="myFoundReports">My Found Reports</string>
 
     <string name="btUpdateProfile">Submit Change</string>
-    <string name="changeimage">Change Image</string>
+    <string name="changeImage">Change Image</string>
     <string name="tvUpdateProfileName">User Name</string>
     <string name="tvUpdateProfileEmail">User Email</string>
     <string name="ChangePassword">New Password</string>
@@ -32,15 +34,15 @@
     <string name="CurrentPassword">Current Password</string>
     <string name="Username">Username</string>
 
-
-    <string name="EditProfileImage">Edit Profile Image</string>
-
-    <string name="WelcomeBack">Welcome Back</string>
-
-    <string name="tbProfileName">User Name</string>
-    <string name="tvProfileEmail">User Email</string>
-    <string name="updateProfile">Update Profile</string>
+    <string name="editProfileImage">Edit Image</string>
+    <string name="back">Back</string>
     <string name="cancel">Cancel</string>
+    <string name="welcomeBack">Welcome back</string>
+    <string name="tbProfileName">Username</string>
+    <string name="tvProfileEmail">Email</string>
+    <string name="updateProfile">Update Profile</string>
+    <string name="searchExisting">Search Existing</string>
+    <string name="addNew">New Report</string>
 
     <string name="LOSTFOUND">LOST "\u0026" FOUND</string>
 

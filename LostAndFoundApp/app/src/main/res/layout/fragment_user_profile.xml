@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/user_profileImage"
+            android:id="@+id/userProfileImage"
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:layout_alignParentStart="true"
@@ -58,7 +58,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:text="@string/WelcomeBack"
+            android:text="@string/welcomeBack"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -75,6 +75,7 @@
             android:text="@string/tvProfileEmail"
             android:textColor="#FFFFFF"
             android:textSize="24sp"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.486"

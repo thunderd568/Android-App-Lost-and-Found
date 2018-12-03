@@ -66,7 +66,7 @@ public class UserProfileFragment extends Fragment {
         user = firebaseAuth.getCurrentUser();
         mEmail = user.getEmail();
         uri = user.getPhotoUrl();
-        profile_image = fragview.findViewById(R.id.user_profileImage);
+        profile_image = fragview.findViewById(R.id.userProfileImage);
 
 
 
