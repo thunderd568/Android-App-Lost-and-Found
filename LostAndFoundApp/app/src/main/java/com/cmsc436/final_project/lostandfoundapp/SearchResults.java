@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
@@ -60,6 +61,7 @@ public class SearchResults extends AppCompatActivity {
         mReportAdapter = new ReportAdapter(getApplicationContext(), myReports);
         myReportsRecyclerView.setAdapter(mReportAdapter);
 
+        locationSelected = (intent.getIntExtra("locationSelected", 0) == 1);
         isFound = intent.getIntExtra("isFound", 0) == 1 ? true : false;
         isEarlyBoundSelected = intent.getIntExtra("earlyBoundSelected", 0) == 1 ? true : false;
         isLateBoundSelected = intent.getIntExtra("lateBoundSelected", 0) == 1 ? true : false;
@@ -77,11 +79,18 @@ public class SearchResults extends AppCompatActivity {
             databaseResultItems = FirebaseDatabase.getInstance().getReference("lost_reports");
         }
 
-        myReportsQuery = databaseResultItems.orderByChild("latitude");
         if(locationSelected){
-           myReportsQuery = myReportsQuery.startAt(latMin).endAt(latMax);
-           myReportsQuery = myReportsQuery.orderByChild("longitude");
-           myReportsQuery = myReportsQuery.startAt(latMin).endAt(latMax);
+            myReportsQuery = databaseResultItems.orderByChild("latitude");
+            Toast.makeText(getApplicationContext(),
+                      "latMax:"+latMax+",latMin:"+latMin+",lngMax:"+lngMax+",lngMin:"+lngMin,
+                      Toast.LENGTH_LONG).show();
+        }else{
+            myReportsQuery = databaseResultItems.orderByKey();
+        }
+        if(isEarlyBoundSelected){
+            Toast.makeText(getApplicationContext(),
+                    "Early Bound Selected",
+                    Toast.LENGTH_LONG).show();
         }
 //        myReportsQuery = myReportsQuery.orderByChild("dateOccurred/year");
 //        if(isEarlyBoundSelected){
@@ -96,8 +105,9 @@ public class SearchResults extends AppCompatActivity {
                 myReports.clear();
                 //Log.i( "testing","did my author "+currentAuthor+" get here in time");
                 //Log.i("testing","hasChildren: "+dataSnapshot.hasChildren());
+                int i = 0;
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
-
+                    i++;
                     String address = snapshot.child("address").getValue().toString();
                     String author = snapshot.child("author").getValue().toString();
                     Date dateAuthored = snapshot.child("dateAuthored").getValue(Date.class);
@@ -110,31 +120,30 @@ public class SearchResults extends AppCompatActivity {
                     String title = snapshot.child("title").getValue().toString();
                     String type = snapshot.child("type").getValue().toString();
                     String id = snapshot.child("id").getValue().toString();
-                    String authorEmailAddres = snapshot.child("authorEmailAddress").getValue().toString();
+
+                    String authorEmailAddress = snapshot.child("authorEmailAddress").getValue().toString();
+
                     // Make a new latLng object. We can't deserialize the LatLng object inside our object
                     // So the work around is to get the double values, make a new LatLng object
                     // and pass it into the constructor. Note that since this is the found fragment
                     // "true" will be passed in as the argument...duh!
                     LatLng latLng = new LatLng(lat, longitude);
 
-
                     ItemReport report = new ItemReport(title, description, author, dateOccurred,
-                            dateAuthored, latLng, address, true, id, authorEmailAddres);
+                            dateAuthored, latLng, address, type.equals("FOUND"), id, authorEmailAddress);
 
-                    if(isEarlyBoundSelected && earlyBound.compareTo(dateOccurred)<=0){
-                        if(isLateBoundSelected && lateBound.compareTo(dateOccurred)>=0){
-                            myReports.add(report);
-                        }else{
-                            continue;
-                        }
-                        myReports.add(report);
-                    }else if(isLateBoundSelected && lateBound.compareTo(dateOccurred)>=0){
-                        myReports.add(report);
-                    }else{
+                    if(locationSelected && (longitude<lngMin || lngMax<longitude || lat<latMin || latMax<lat)){
+                        continue;
+                    }else if(isEarlyBoundSelected && earlyBound.compareTo(dateOccurred)>0) {
+                        continue;
+                    }else if(isLateBoundSelected && lateBound.compareTo(dateOccurred)<0) {
+                        continue;
+                    } else {
                         myReports.add(report);
                     }
                 }//for
                 mReportAdapter.notifyDataSetChanged();
+                Toast.makeText(getApplicationContext(),"i = "+i, Toast.LENGTH_LONG).show();
             }
 
             @Override
