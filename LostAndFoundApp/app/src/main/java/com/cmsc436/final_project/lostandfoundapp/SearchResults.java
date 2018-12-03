@@ -110,6 +110,7 @@ public class SearchResults extends AppCompatActivity {
                     String title = snapshot.child("title").getValue().toString();
                     String type = snapshot.child("type").getValue().toString();
                     String id = snapshot.child("id").getValue().toString();
+                    String authorEmailAddres = snapshot.child("authorEmailAddress").getValue().toString();
                     // Make a new latLng object. We can't deserialize the LatLng object inside our object
                     // So the work around is to get the double values, make a new LatLng object
                     // and pass it into the constructor. Note that since this is the found fragment
@@ -118,7 +119,7 @@ public class SearchResults extends AppCompatActivity {
 
 
                     ItemReport report = new ItemReport(title, description, author, dateOccurred,
-                            dateAuthored, latLng, address, true, id);
+                            dateAuthored, latLng, address, true, id, authorEmailAddres);
 
                     if(isEarlyBoundSelected && earlyBound.compareTo(dateOccurred)<=0){
                         if(isLateBoundSelected && lateBound.compareTo(dateOccurred)>=0){
