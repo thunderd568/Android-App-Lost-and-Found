@@ -7,197 +7,193 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/postFoundDateFound"
+        android:id="@+id/postFoundTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="unselected"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-        app:layout_constraintBottom_toBottomOf="@+id/postFoundDateHeader"
-        app:layout_constraintEnd_toStartOf="@+id/pickDateFoundButton"
-        app:layout_constraintStart_toStartOf="@+id/getFoundLocationButton"
-        app:layout_constraintTop_toTopOf="@+id/postFoundDateHeader" />
-
-    <Button
-        android:id="@+id/getFoundLocationButton"
-        android:layout_width="205dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="4dp"
-        android:text="Get Location"
-        app:layout_constraintBottom_toBottomOf="@+id/locationHeader"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/locationHeader"
-        app:layout_constraintTop_toTopOf="@+id/locationHeader" />
-
-    <TextView
-        android:id="@+id/postFoundTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:text="TextView"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+        android:layout_marginEnd="32dp"
+        android:text="New Found Report"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="New Found Report" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/postFoundReportTitleHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:text="Title:"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/postFoundTitle"
+        tools:text="Title: " />
+
+    <EditText
+        android:id="@+id/postFoundReportTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:hint="Enter name of item found"
+        app:layout_constraintBottom_toBottomOf="@+id/postFoundReportTitleHeader"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/postFoundReportTitleHeader"
+        app:layout_constraintTop_toTopOf="@+id/postFoundReportTitleHeader" />
+
+    <TextView
+        android:id="@+id/postFoundDateHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        android:text="Date Found:"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/postFoundReportTitle" />
+
+    <TextView
+        android:id="@+id/postFoundDateFound"
+        android:layout_width="0dp"
+        android:layout_height="23dp"
+        android:text="No date selected"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+        app:layout_constraintStart_toStartOf="@+id/pickDateFoundButton"
+        app:layout_constraintTop_toBottomOf="@+id/pickDateFoundButton" />
+
+    <Button
+        android:id="@+id/pickDateFoundButton"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="32dp"
+        android:text="SELECT DATE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/getFoundLocationButton"
+        app:layout_constraintTop_toTopOf="@+id/postFoundDateHeader" />
 
     <TextView
         android:id="@+id/locationHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:text="Location"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postFoundDateHeader"
+        app:layout_constraintTop_toBottomOf="@+id/postFoundDateFound"
         tools:text="Location" />
+
+    <Button
+        android:id="@+id/getFoundLocationButton"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
+        android:text="Get Location"
+        app:layout_constraintBottom_toBottomOf="@+id/locationHeader"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/postFoundDateHeader"
+        app:layout_constraintTop_toTopOf="@+id/locationHeader"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/postFoundCoordinatesHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="Coordinates:"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/getFoundLocationButton"
+        tools:text="Coordinates:" />
 
     <TextView
         android:id="@+id/postFoundCoordinates"
         android:layout_width="0dp"
         android:layout_height="22dp"
         android:layout_marginEnd="8dp"
-        android:text="no location selected"
+        android:text="No location selected"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-        app:layout_constraintBaseline_toBaselineOf="@+id/postFoundCoordinatesHeader"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/getFoundLocationButton" />
-
-    <TextView
-        android:id="@+id/postFoundCoordinatesHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:text="Coordinates:"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/locationHeader"
-        tools:text="Coordinates:" />
-
-    <EditText
-        android:id="@+id/postFoundReportName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:hint="Enter name of item found"
-        app:layout_constraintBottom_toBottomOf="@+id/postFoundReportNameHeader"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/postFoundReportNameHeader"
-        app:layout_constraintTop_toTopOf="@+id/postFoundReportNameHeader" />
-
-    <TextView
-        android:id="@+id/postFoundReportNameHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Name:"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postFoundTitle"
-        tools:text="Name: " />
-
-    <EditText
-        android:id="@+id/postFoundReportDescription"
-        android:layout_width="0dp"
-        android:layout_height="86dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:hint="Describe item and location found"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postFoundReportDescriptionHeader" />
-
-    <TextView
-        android:id="@+id/postFoundReportDescriptionHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Description:"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postFoundAddressHeader"
-        tools:text="Description:" />
-
-    <TextView
-        android:id="@+id/postFoundDateHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Date Found:"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postFoundReportNameHeader" />
+        app:layout_constraintStart_toStartOf="@+id/getFoundLocationButton"
+        app:layout_constraintTop_toTopOf="@+id/postFoundCoordinatesHeader" />
 
     <TextView
         android:id="@+id/postFoundAddressHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:text="Address:"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postFoundCoordinatesHeader" />
+        app:layout_constraintTop_toBottomOf="@+id/postFoundCoordinates" />
 
     <TextView
         android:id="@+id/postFoundAddress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:text="no address selected"
+        android:text="No address available"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-        app:layout_constraintBaseline_toBaselineOf="@+id/postFoundAddressHeader"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/postFoundCoordinates" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/postFoundCoordinates"
+        app:layout_constraintTop_toTopOf="@+id/postFoundAddressHeader" />
 
-    <Button
-        android:id="@+id/pickDateFoundButton"
+    <TextView
+        android:id="@+id/postFoundReportDescriptionHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="PICK DATE"
-        app:layout_constraintBottom_toBottomOf="@+id/postFoundDateHeader"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="Description:"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/postFoundAddress"
+        tools:text="Description:" />
+
+    <EditText
+        android:id="@+id/postFoundReportDescription"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="0dp"
+        android:layout_height="144dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Describe item and location found"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/postFoundDateHeader" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/postFoundReportDescriptionHeader" />
 
     <Button
         android:id="@+id/submitFound"
-        android:layout_width="297dp"
-        android:layout_height="45dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="120dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/postFoundReportDescription"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/cancelButton"
-        android:layout_width="297dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="72dp"
+        android:layout_width="102dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
         android:text="Cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postFoundReportDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/postFoundReportDescription"
+        app:layout_constraintVertical_bias="1.0" />
 
 </android.support.constraint.ConstraintLayout>

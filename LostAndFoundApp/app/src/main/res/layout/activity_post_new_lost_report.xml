@@ -7,202 +7,194 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/postLostDateLost"
+        android:id="@+id/postLostTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="unselected"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-        app:layout_constraintBottom_toBottomOf="@+id/postLostDateHeader"
-        app:layout_constraintEnd_toStartOf="@+id/pickDateLostButton"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/getLostLocationButton"
-        app:layout_constraintTop_toTopOf="@+id/postLostDateHeader"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <Button
-        android:id="@+id/getLostLocationButton"
-        android:layout_width="205dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="152dp"
-        android:layout_marginEnd="8dp"
-        android:text="Get Location"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:text="New Lost Report"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/locationLostHeader"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/postLostTitle"
+        android:id="@+id/postLostReportTitleHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:text="Lost Item Report"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:text="Title:"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="New Lost Report" />
+        app:layout_constraintTop_toBottomOf="@+id/postLostTitle"
+        tools:text="Title: " />
+
+    <EditText
+        android:id="@+id/postLostReportTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Enter name of lost item"
+        app:layout_constraintBottom_toBottomOf="@+id/postLostReportTitleHeader"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/postLostReportTitleHeader"
+        app:layout_constraintTop_toTopOf="@+id/postLostReportTitleHeader" />
+
+    <TextView
+        android:id="@+id/postLostDateHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        android:text="Date Lost:"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/postLostReportTitleHeader" />
+
+    <TextView
+        android:id="@+id/postLostDateLost"
+        android:layout_width="0dp"
+        android:layout_height="23dp"
+        android:text="No date selected"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+        app:layout_constraintStart_toStartOf="@+id/pickDateLostButton"
+        app:layout_constraintTop_toBottomOf="@+id/pickDateLostButton" />
+
+    <Button
+        android:id="@+id/pickDateLostButton"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="32dp"
+        android:text="SELECT DATE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/getLostLocationButton"
+        app:layout_constraintTop_toTopOf="@+id/postLostDateHeader" />
 
     <TextView
         android:id="@+id/locationLostHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
         android:text="Location"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-        app:layout_constraintBottom_toTopOf="@+id/postLostCoordinatesHeader"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postLostDateHeader"
+        app:layout_constraintTop_toBottomOf="@+id/postLostDateLost"
         tools:text="Location" />
+
+    <Button
+        android:id="@+id/getLostLocationButton"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
+        android:text="Get Location"
+        app:layout_constraintBottom_toBottomOf="@+id/locationLostHeader"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/postLostDateHeader"
+        app:layout_constraintTop_toTopOf="@+id/locationLostHeader"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/postLostCoordinatesHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="Coordinates:"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/getLostLocationButton"
+        tools:text="Coordinates:" />
 
     <TextView
         android:id="@+id/postLostCoordinates"
         android:layout_width="0dp"
         android:layout_height="22dp"
         android:layout_marginEnd="8dp"
-        android:text="no location selected"
+        android:text="No location selected"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-        app:layout_constraintBaseline_toBaselineOf="@+id/postLostCoordinatesHeader"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/getLostLocationButton" />
+        app:layout_constraintStart_toStartOf="@+id/getLostLocationButton"
+        app:layout_constraintTop_toTopOf="@+id/postLostCoordinatesHeader" />
 
     <TextView
-        android:id="@+id/postLostCoordinatesHeader"
+        android:id="@+id/postLostAddressHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="196dp"
-        android:text="Coordinates:"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="Address:"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Coordinates:" />
+        app:layout_constraintTop_toBottomOf="@+id/postLostCoordinates" />
 
-    <EditText
-        android:id="@+id/postLostReportName"
+    <TextView
+        android:id="@+id/postLostAddress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:hint="Enter name of item Lost"
-        app:layout_constraintBottom_toBottomOf="@+id/postLostReportNameHeader"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/postLostReportNameHeader"
-        app:layout_constraintTop_toTopOf="@+id/postLostReportNameHeader" />
-
-    <TextView
-        android:id="@+id/postLostReportNameHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Name:"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postLostTitle"
-        tools:text="Name: " />
-
-    <EditText
-        android:id="@+id/postLostReportDescription"
-        android:layout_width="0dp"
-        android:layout_height="86dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:hint="Describe item and location Lost"
+        android:text="No address available"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postLostReportDescriptionHeader" />
+        app:layout_constraintStart_toStartOf="@+id/postLostCoordinates"
+        app:layout_constraintTop_toTopOf="@+id/postLostAddressHeader" />
 
     <TextView
         android:id="@+id/postLostReportDescriptionHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
         android:text="Description:"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addressInfoText"
+        app:layout_constraintTop_toBottomOf="@+id/postLostAddress"
         tools:text="Description:" />
 
-    <TextView
-        android:id="@+id/postLostDateHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Date Lost:"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postLostReportNameHeader" />
-
-    <TextView
-        android:id="@+id/addressLostText"
-        android:layout_width="wrap_content"
-        android:layout_height="21dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="Address:"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postLostCoordinatesHeader" />
-
-    <TextView
-        android:id="@+id/addressInfoText"
+    <EditText
+        android:id="@+id/postLostReportDescription"
+        style="@style/Widget.AppCompat.EditText"
         android:layout_width="0dp"
-        android:layout_height="22dp"
-        android:layout_marginEnd="8dp"
-        android:text="no address selected"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-        app:layout_constraintBaseline_toBaselineOf="@+id/addressLostText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/postLostCoordinates" />
-
-    <Button
-        android:id="@+id/pickDateLostButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="PICK DATE"
-        app:layout_constraintBottom_toBottomOf="@+id/postLostDateHeader"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/postLostDateHeader" />
-
-    <Button
-        android:id="@+id/submitLostReport"
-        android:layout_width="297dp"
-        android:layout_height="45dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_height="144dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Describe item and location lost"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/postLostReportDescriptionHeader" />
+
+    <Button
+        android:id="@+id/submitLost"
+        android:layout_width="120dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/postLostReportDescription"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/cancelLostReportButton"
-        android:layout_width="297dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="8dp"
+        android:id="@+id/cancelButton"
+        android:layout_width="102dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
         android:text="Cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postLostReportDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/postLostReportDescription"
+        app:layout_constraintVertical_bias="1.0" />
 
 </android.support.constraint.ConstraintLayout>
