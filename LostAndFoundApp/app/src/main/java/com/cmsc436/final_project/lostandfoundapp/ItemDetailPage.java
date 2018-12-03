@@ -76,7 +76,7 @@ public class ItemDetailPage extends AppCompatActivity {
         if (reportAuthor.equals(mFirebaseAuth.getCurrentUser().getDisplayName())) {
             // Make the visibility of the delete button true and the contact button false
             deletePostButton.setVisibility(View.VISIBLE);
-            contactAuthorButton.setVisibility(View.VISIBLE);
+            contactAuthorButton.setVisibility(View.INVISIBLE);
         } else {
             // The person viewing this report is not the OP, Show them the contact author button.
             deletePostButton.setVisibility(View.INVISIBLE);
