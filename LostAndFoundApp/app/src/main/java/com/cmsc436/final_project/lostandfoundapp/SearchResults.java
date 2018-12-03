@@ -148,9 +148,9 @@ public class SearchResults extends AppCompatActivity {
 
                         continue;
                     }else if(isEarlyBoundSelected
-                            && lowBound.compareTo(calRipkin)>0) {
+                            && earlyBound.after(dateOccurred)) {
                         continue;
-                    }else if(isLateBoundSelected && highBound.compareTo(calRipkin)<0) {
+                    }else if(isLateBoundSelected && lateBound.before(dateOccurred)) {
 
                         continue;
                     } else {

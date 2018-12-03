@@ -145,7 +145,7 @@ public class SearchFoundReportsActivity extends AppCompatActivity {
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         startDate.set(year, month, day);
                         startDateTextView.setText((month + 1) + "/" + day + "/" + year);
-                        earlyBound = new Date(year, month, day);
+                        earlyBound = new Date((year-1900), month, day);
                         Toast.makeText(getApplicationContext(), month + " " + day + " " + year, Toast.LENGTH_LONG).show();
                         earlyBoundSelected = true;
                     }
@@ -170,7 +170,7 @@ public class SearchFoundReportsActivity extends AppCompatActivity {
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         endDate.set(year, month, day);
                         endDateTextView.setText((month + 1) + "/" + day + "/" + year);
-                        lateBound = new Date(year, month, day);
+                        lateBound = new Date((year-1900), month, day);
                         Toast.makeText(getApplicationContext(), month + " " + day + " " + year, Toast.LENGTH_LONG).show();
                         lateBoundSelected = true;
 
