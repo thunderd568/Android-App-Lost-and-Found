@@ -58,10 +58,10 @@ public class PostNewLostReportActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_new_lost_report);
-        mTitleTextField = findViewById(R.id.postLostReportName);
+        mTitleTextField = findViewById(R.id.postLostReportTitle);
         mDateLostView = findViewById(R.id.postLostDateLost);
         mPostLostCoor = findViewById(R.id.postLostCoordinates);
-        mAddressView = findViewById(R.id.addressInfoText);
+        mAddressView = findViewById(R.id.postLostAddress);
         mDescription = findViewById(R.id.postLostReportDescription);
 
 
@@ -83,8 +83,8 @@ public class PostNewLostReportActivity extends AppCompatActivity {
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("lost_reports");
 
         // Getting the Views for the buttons on the page
-        submitLostReportButton = findViewById(R.id.submitLostReport);
-        cancelLostReportButton = findViewById(R.id.cancelLostReportButton);
+        submitLostReportButton = findViewById(R.id.submitLost);
+        cancelLostReportButton = findViewById(R.id.cancelButton);
         mdateLostPicker = findViewById(R.id.pickDateLostButton);
         mLostLocationButton = findViewById(R.id.getLostLocationButton);
         mdateLostPicker.setOnClickListener(new View.OnClickListener() {
@@ -179,7 +179,7 @@ public class PostNewLostReportActivity extends AppCompatActivity {
 
             mPostLostCoor.setText(new DecimalFormat("###.##").format(curr_Lat).toString() + ", " +
                     new DecimalFormat("###.##").format(curr_Lng).toString());
-            mAddressView = findViewById(R.id.addressInfoText);
+            mAddressView = findViewById(R.id.postLostAddress);
             mAddressView.setText(curr_address);
 
         }

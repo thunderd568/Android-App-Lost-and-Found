@@ -67,7 +67,7 @@ public class PostNewFoundReport extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_new_found);
-        mTitleTextField = (EditText) findViewById(R.id.postFoundReportName);
+        mTitleTextField = (EditText) findViewById(R.id.postFoundReportTitle);
         mDescriptionTextField = (EditText) findViewById(R.id.postFoundReportDescription);
         submitFound = findViewById(R.id.submitFound);
         coordinates = findViewById(R.id.postFoundCoordinates);
