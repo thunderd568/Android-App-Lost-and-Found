@@ -68,6 +68,7 @@ public class UserProfileFragment extends Fragment {
         uri = user.getPhotoUrl();
         profile_image = fragview.findViewById(R.id.userProfileImage);
 
+
         updateProfileButton = (Button) fragview.findViewById(R.id.updateProfile);
         updateProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
