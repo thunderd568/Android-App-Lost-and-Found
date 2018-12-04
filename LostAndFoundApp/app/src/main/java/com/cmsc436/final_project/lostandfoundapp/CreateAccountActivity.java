@@ -29,8 +29,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
@@ -91,8 +96,12 @@ public class CreateAccountActivity extends AppCompatActivity {
             return;
         }
         // password and username must be minimum length
-        if(password.length() < 6 || username.length() < 4) {
+        if(password.length() < 6 ) {
             Toast.makeText(this, "Password must be at least 6 characters", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(username.length() < 4) {
+            Toast.makeText(this, "Username must be at least 4 characters", Toast.LENGTH_LONG).show();
             return;
         }
         // password and confirm password must match
@@ -100,36 +109,56 @@ public class CreateAccountActivity extends AppCompatActivity {
             Toast.makeText(this, "Make sure password fields match!", Toast.LENGTH_LONG).show();
             return;
         }
-        // create entity in firebase authentication
-        mFirebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener( new OnCompleteListener<AuthResult>() {
+        Query usernameQuery = database.orderByChild("username").equalTo(username);
+
+        usernameQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                boolean usernameExists = false;
+                for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
+                    usernameExists = true;
+                }
+                if(!usernameExists) {
+                    // create entity in firebase authentication
+                    mFirebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            // Verify if the account creation was successful.
+                            if (task.isSuccessful()) {
+                                // create key in real time database
+                                mProfileImage.setImageResource(R.mipmap.ic_launcher);
+                                String id = database.push().getKey();
+                                database.child(id).setValue(new Users(email, 0, username, imageUrl, id));
+                                FirebaseUser newUser = mFirebaseAuth.getCurrentUser();
+                                // This fragment of code will set the display name of the logged in user so it is
+                                // easily retrievable using the method for a firebase user, getDisplayName().
+                                if (newUser != null) {
+                                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                            .setDisplayName(username).build();
+                                    newUser.updateProfile(profileUpdates);
+                                }
+                                Toast.makeText(CreateAccountActivity.this, "Account Created", Toast.LENGTH_LONG).show();
+
+                                // Upon successful login, Start the next activity to go to next screen
+                                // TODO: make an intent to start the next activity to take user to next screen.
+                                // This may require us to pass in some extra information. I'm not sure yet.
+                                Log.i(TAG, "Account successfully created");
+                                Intent intent = new Intent(CreateAccountActivity.this, NavTabsActivity.class);
+                                startActivity(intent);
+                            } else {
+                                Toast.makeText(CreateAccountActivity.this, "Account already exists, try again", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+                }else{
+                    Toast.makeText(CreateAccountActivity.this, "Username already in use, try again", Toast.LENGTH_LONG).show();
+                }
+            }
 
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                // Verify if the account creation was successful.
-                if (task.isSuccessful()) {
-                    // create key in real time database
-                    mProfileImage.setImageResource(R.mipmap.ic_launcher);
-                    String id = database.push().getKey();
-                    database.child(id).setValue(new Users(email, 0, username,imageUrl,id));
-                    FirebaseUser newUser = mFirebaseAuth.getCurrentUser();
-                    // This fragment of code will set the display name of the logged in user so it is
-                    // easily retrievable using the method for a firebase user, getDisplayName().
-                    if (newUser != null) {
-                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                .setDisplayName(username).build();
-                        newUser.updateProfile(profileUpdates);
-                    }
-                    Toast.makeText(CreateAccountActivity.this, "Account Created", Toast.LENGTH_LONG).show();
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                    // Upon successful login, Start the next activity to go to next screen
-                    // TODO: make an intent to start the next activity to take user to next screen.
-                    // This may require us to pass in some extra information. I'm not sure yet.
-                    Log.i(TAG, "Account successfully created");
-                    Intent intent = new Intent(CreateAccountActivity.this, NavTabsActivity.class);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(CreateAccountActivity.this, "Account already exists, try again", Toast.LENGTH_LONG).show();
-                }
             }
         });
     }
