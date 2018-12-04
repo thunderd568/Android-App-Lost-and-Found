@@ -1,6 +1,7 @@
 package com.cmsc436.final_project.lostandfoundapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,8 +11,11 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import java.util.Date;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ItemDetailPage extends AppCompatActivity {
 
@@ -24,11 +28,12 @@ public class ItemDetailPage extends AppCompatActivity {
     private String mTitle, mDescription, mAddress, reportAuthor, authorEmailAddress;
     private double mLatitude, mLongitude;
     private Date mDate;
-    String id;
+    private String id;
     int type;
+
     //Firebase stuff
     private FirebaseAuth mFirebaseAuth;
-    private DatabaseReference mdatabaseRef;
+    private DatabaseReference mdatabaseRef, mUsersDatabaseRef;
 
 
     @Override
@@ -138,4 +143,5 @@ public class ItemDetailPage extends AppCompatActivity {
 
 
     }
+
 }
