@@ -1,6 +1,5 @@
 package com.cmsc436.final_project.lostandfoundapp;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -24,8 +23,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
 
 /**
  * A simple {@link Fragment} subclass.

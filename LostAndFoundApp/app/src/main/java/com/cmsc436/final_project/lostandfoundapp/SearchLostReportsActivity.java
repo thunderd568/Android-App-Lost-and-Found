@@ -146,7 +146,7 @@ public class SearchLostReportsActivity extends AppCompatActivity {
                         startDate.set(year, month, day);
                         startDateTextView.setText((month + 1) + "/" + day + "/" + year);
                         earlyBound = new Date((year-1900), month, day);
-                        Toast.makeText(getApplicationContext(), month + " " + day + " " + year, Toast.LENGTH_LONG).show();
+                       // Toast.makeText(getApplicationContext(), month + " " + day + " " + year, Toast.LENGTH_LONG).show();
                         earlyBoundSelected = true;
                     }
                 }, currYear, currMonth, currDay);
@@ -171,7 +171,7 @@ public class SearchLostReportsActivity extends AppCompatActivity {
                         endDate.set(year, month, day);
                         endDateTextView.setText((month + 1) + "/" + day + "/" + year);
                         lateBound = new Date((year-1900), month, day);
-                        Toast.makeText(getApplicationContext(), month + " " + day + " " + year, Toast.LENGTH_LONG).show();
+                       // Toast.makeText(getApplicationContext(), month + " " + day + " " + year, Toast.LENGTH_LONG).show();
                         lateBoundSelected = true;
 
                     }
@@ -252,8 +252,8 @@ public class SearchLostReportsActivity extends AppCompatActivity {
         latMin = curr_Lat - (radiusMiles/69.1);
         lngMax = curr_Lng + (radiusMiles/(69.1*(Math.cos(curr_Lat/57.3))));
         lngMin = curr_Lng - (radiusMiles/(69.1*(Math.cos(curr_Lat/57.3))));
-        Toast.makeText(getApplicationContext(),
-                "latMax:"+latMax+",latMin:"+latMin+",lngMax:"+lngMax+",lngMin:"+lngMin,
-                Toast.LENGTH_LONG).show();
+//        Toast.makeText(getApplicationContext(),
+//                "latMax:"+latMax+",latMin:"+latMin+",lngMax:"+lngMax+",lngMin:"+lngMin,
+//                Toast.LENGTH_LONG).show();
     }
 }
