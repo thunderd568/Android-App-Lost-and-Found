@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,9 +26,6 @@ public class SearchResults extends AppCompatActivity {
     RecyclerView myReportsRecyclerView;
     ReportAdapter mReportAdapter;
     DatabaseReference databaseResultItems;
-    private FirebaseAuth mFirebaseAuth;
-    DatabaseReference databaseUsers;
-    Query myAuthorQuery;
     Query myReportsQuery;
 
     boolean locationSelected = false;
@@ -82,24 +78,10 @@ public class SearchResults extends AppCompatActivity {
 
         if(locationSelected){
             myReportsQuery = databaseResultItems.orderByChild("latitude");
-            Toast.makeText(getApplicationContext(),
-                      "latMax:"+latMax+",latMin:"+latMin+",lngMax:"+lngMax+",lngMin:"+lngMin,
-                      Toast.LENGTH_LONG).show();
         }else{
             myReportsQuery = databaseResultItems.orderByKey();
         }
-        if(isEarlyBoundSelected){
-            Toast.makeText(getApplicationContext(),
-                    "Early Bound Selected",
-                    Toast.LENGTH_LONG).show();
-        }
-//        myReportsQuery = myReportsQuery.orderByChild("dateOccurred/year");
-//        if(isEarlyBoundSelected){
-//            myReportsQuery = myReportsQuery.startAt(earlyBound.getYear());
-//        }
-//        if(isLateBoundSelected){
-//            myReportsQuery = myReportsQuery.endAt(lateBound.getYear());
-//        }
+
         myReportsQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -107,8 +89,8 @@ public class SearchResults extends AppCompatActivity {
                 //Log.i( "testing","did my author "+currentAuthor+" get here in time");
                 //Log.i("testing","hasChildren: "+dataSnapshot.hasChildren());
                 int i = 0;
-                Toast.makeText(getApplicationContext(), "early date chosen " +earlyBound.toString(), Toast.LENGTH_LONG).show();
-                Toast.makeText(getApplicationContext(), "later date chosen " +lateBound.toString(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "early date chosen " +earlyBound.toString(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "later date chosen " +lateBound.toString(), Toast.LENGTH_LONG).show();
 
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
                     i++;
@@ -158,7 +140,7 @@ public class SearchResults extends AppCompatActivity {
                     }
                 }//for
                 mReportAdapter.notifyDataSetChanged();
-                Toast.makeText(getApplicationContext(),"i = "+i, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(),"i = "+i, Toast.LENGTH_LONG).show();
             }
 
             @Override
