@@ -17,5 +17,5 @@ Potential Issues:
 - Communication methods
 
 # Video Demo
-View the video demo here! (no audio)
+View the video demo here! (no audio) </br>
 https://www.youtube.com/watch?v=PGhsxTOmPmY
