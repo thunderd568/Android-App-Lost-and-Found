@@ -16,6 +16,6 @@ Potential Issues:
 - Security/Reliability
 - Communication methods
 
-#Video Demo
+# Video Demo
 View the video demo here! (no audio)
 https://www.youtube.com/watch?v=PGhsxTOmPmY
