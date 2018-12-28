@@ -15,3 +15,7 @@ Functionalities to Consider:
 Potential Issues:
 - Security/Reliability
 - Communication methods
+
+#Video Demo
+View the video demo here! (no audio)
+https://www.youtube.com/watch?v=PGhsxTOmPmY
